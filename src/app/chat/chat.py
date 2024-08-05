@@ -9,7 +9,7 @@ class Chat:
         self.max_history_len = 5
 
     async def send_query(self, query):
-        pass
+        return self.process_query(query)
 
     def process_query(self, query):
         self.history.append({"role": "user", "content": query})
