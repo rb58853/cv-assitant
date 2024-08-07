@@ -17,3 +17,9 @@ class Chat:
         response = self.gpt.conversation(self.history)
         self.history.append({"role": "assistant", "content": response})
         return response
+
+    def get_query_objetive(self, query):
+        pass
+
+    def process_projects(self, query):
+        pass

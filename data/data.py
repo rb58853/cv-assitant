@@ -1,3 +1,5 @@
+from data.skills import programming_languajes, skills
+
 # basic info
 github = "https://github.com/rb58853"
 
@@ -33,4 +35,6 @@ info = {
     "languajes": languajes,
     "frameworks": frameworks,
     "Knowledge": Knowledge,
+    "skills": skills,
+    "languajes": programming_languajes,
 }

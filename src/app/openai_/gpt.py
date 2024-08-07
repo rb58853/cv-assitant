@@ -67,3 +67,7 @@ class GPT:
 
         self.current_price += price
         return price
+
+    def end_irs(self, projects, history):
+
+        pass

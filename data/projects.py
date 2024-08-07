@@ -1,14 +1,17 @@
 projects = {
     "audioML": {
+        'id': "audioML",
         "title": "Audio Genre Classification",
         "skills": ["ML", "AI"],
         "languages": ["Python"],
+
         "keywords": "Music genre, CNN, spectograms, MFCC, Conv1D, encoder.",
         "description": "The classification of music genres plays a crucial role in modern digital audio signal processing applications. In this study, we propose several machine learning approaches to accurately categorize music tracks into predefined genres. Each approach uses different sets of 'features' that can be extracted from songs; ranging from common ones like MFCC (Mel-frequency cepstral coefficients) and direct audio signals to less explored 'features' in this context such as song lyrics and Wavelet Transform. To evaluate the models, we use the GTZAN reference dataset in the field. The results obtained highlight that song lyrics do not contribute much to classification, at least in the dataset used. The other models show results consistent with the state of the art, with an accuracy between 0.75 and 0.80.",
         "dataset": "GTZAN",
         "models": "CNN, RNN",
     },
     "IRSImagesCLIP": {
+        'id': "IRSImagesCLIP",
         "title": "Image Retrieval System using Machine Learning",
         "skills": ["IRS", "ML", "AI"],
         "keywords": "Embeddings, Multimodals Embeddings.",
@@ -16,6 +19,7 @@ projects = {
         "description": "In this project, the problem of precise image retrieval is addressed. The work employs a new approach: the application of the Segment Anything (SAM) segmentation models and the Constractive Language-Image Pretraining (CLIP) model for the generation of multimodal embeddings. Special emphasis is placed on image retrieval via precise queries, taking into account the position of image segments that compose the same, processing both text and images.",
     },
     "colorProblem": {
+        'id': "colorProblem",
         "title": "8 Colors Problem",
         "skills": ["DAA"],
         "languages": ["Python"],
@@ -23,6 +27,7 @@ projects = {
         "description": "Given an array A that contains only elements of 8 different types, the problem consists in finding the maximum subsequence T, which satisfies the constraints: For every pair of sets Ci, Cj of elements of specific types, it holds that |Ci| - |Cj| ≤ 1. Elements of the same set have to be consecutive in T.",
     },
     "coolCompiler": {
+        'id': "coolCompiler",
         "title": "Cool Compiler",
         "skills": ["Compilers"],
         "keywords": "Language theory, CIL intermedie language, assambly, parsing-semantic-code generation, object oriented language compiler.",
@@ -32,6 +37,7 @@ projects = {
         "target": "MIPS",
     },
     "irs": {
+        'id': "irs",
         "title": "Information Retieval System for text documents",
         "keywords": "Documents retrieval, Data structure Trie, vector model, vaswani model, latent semantic model.",
         "skills": ["IRS"],
@@ -43,6 +49,7 @@ projects = {
         This system not only demonstrates the ability to combine various techniques and algorithms to address complex challenges in processing and analyzing large volumes of data but also results in a robust and scalable system.",
     },
     "tito": {
+        'id': "tito",
         "title": "Building roads",
         "keywords": "Algorithms analysis, best computational complex, graphs theory, greedy, graph flow.",
         "skills": ["DAA"],
@@ -50,6 +57,7 @@ projects = {
         "description": "Let G(v, e) be a weighted graph on vertices and edges. The goal is to find the subgraph that maximizes the sum of edge weights minus the sum of vertex weights. Subject to the constraint that if an edge belongs to the solution subgraph then both vertices connected by it also belong to the subgraph.",
     },
     "navMeshAgentAI": {
+        'id': "navMeshAgentAI",
         "title": "Nav Mesh Agent AI",
         "keywords": "Inteligent agents, metaheuristics, heuristics, terrain simulation, multitude simulation",
         "skills": ["AI", "Unity", "simulation"],
@@ -58,6 +66,7 @@ projects = {
         "Engine": "Unity Engine",
     },
     "artShopEmilio": {
+        'id': "artShopEmilio",
         "title": "Art Shop Emilio",
         "keywords": "Web development, frontend, digital-shop.",
         "skills": ["ReactJS"],
@@ -66,6 +75,7 @@ projects = {
         "framework": "ReactJS",
     },
     "yugiOhBackend": {
+        'id': "yugiOhBackend",
         "skills": ["Django"],
         "title": "Yugi Oh Backend APP",
         "languages": ["python"],
@@ -74,6 +84,7 @@ projects = {
         "framework": "Django",
     },
     "azul": {
+        'id': "azul",
         "title": "Azul",
         "keywords": "azul game, declarative programation, prolog.",
         "skills": ["Declarative"],
@@ -81,6 +92,7 @@ projects = {
         "description": "This project involves implementing a simulation of the popular board game Blue using the declarative programming language Prolog. Blue is known for its tile placement mechanics and scoring based on patterns and sequences. In this simulation, the fundamental rules of the game are modeled, including the arrangement of tiles, color selection, and point calculation according to player configurations. Declarative programming in Prolog allows for clear and concise definition of the game rules and victory conditions, leveraging automatic inference and Prolog's capability to find solutions from predefined facts and rules. The project includes:Rule Definition: The rules of the Blue game are established in terms of facts and logical rules in Prolog, enabling a direct interpretation of the game mechanics. Turn Simulation: Logic is implemented to simulate game turns, where each player can select tiles from virtual factories and place them on their personal boards following the game's restrictions. Point Calculation: A module is developed to automatically calculate each player's points at the end of each round and at the end of the game, based on the positions of the tiles on their boards. User Interface: Although Prolog is not known for its graphical capabilities, a simple text interface is created that allows users to interact with the simulation, select actions, and view the current state of the game.",
     },
     "ftp": {
+        'id': "ftp",
         "title": "Distributed ftp",
         "keywords": "Bully Algorithm, distributed ftp, data persistence",
         "skills": ["networks", "Dist Systems"],
@@ -88,6 +100,7 @@ projects = {
         "description": "This project focuses on the design and implementation of a distributed file transfer protocol (FTP) system using Python, with a particular emphasis on leader coordination through the Bully algorithm. Distributed systems present unique challenges in terms of synchronization and coordination, especially regarding the election of a leader to manage critical operations. The Bully algorithm, recognized for its effectiveness in selecting leaders in distributed networks, plays a crucial role in this project. Distributed FTP Implementation: A distributed FTP system is developed that allows secure file transfers between nodes in a network. This system is designed to be resilient and scalable, capable of handling multiple simultaneous transfer requests without compromising performance. Bully Algorithm for Leader Coordination: The Bully algorithm is integrated for the election of leaders among the system nodes. This algorithm ensures that there is always an active and available node to coordinate FTP operations, even in case of failures or disconnections of some nodes. Failure Management and Reconnections: The system includes mechanisms to detect and handle node failures, ensuring the continuity of FTP service. When a node fails, the Bully algorithm activates a selection process to designate a new leader, minimizing service interruption.",
     },
     "littleArchemy": {
+        'id': "littleArchemy",
         "title": "Little Archemy",
         "keywords": "Telegram bot, Django backend, applied mathematics. ",
         "languages": ["Python"],
@@ -95,6 +108,7 @@ projects = {
         "description": 'This project combines the power of Django, a high-performance web development framework, with the interactivity of Telegram bots to create a unique platform dedicated to generating mathematical elements through virtual alchemical processes. The core idea is to allow users to interact with the system via text messages, where each mathematical element can be "rented" or combined with others to produce new concepts or mathematical solutions.',
     },
     "chatbot": {
+        'id': "chatbot",
         "skills": ["ML", "IRS", "AI"],
         "title": "Devman ChatBot",
         "languages": ["Python"],
