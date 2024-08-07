@@ -16,8 +16,6 @@ study_fields = "Arificial intelligent and Machine Learning, Information Retreval
 
 languajes = "a2 in english and native in spanish."
 
-programming_languajes = "Python, C#, MIPS, C, C++, Prolog, Javascript, Dart, LaTex, Jupyter Notebook, Markdown, CSS, HTML"
-
 frameworks = "Django, ASP.NET, ReactJS, Flutter, Unity Engine"
 
 Knowledge = "Graph Theory, Number Theory, Language Theory, Dinamyc and Greedy Programing, Combinatorics, Algebra, Data Structure Analysis and Algorithms"
@@ -33,7 +31,6 @@ info = {
     "interests": interests,
     "study_fields": study_fields,
     "languajes": languajes,
-    "programming_languajes": programming_languajes,
     "frameworks": frameworks,
     "Knowledge": Knowledge,
 }
