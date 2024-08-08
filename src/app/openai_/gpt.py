@@ -45,7 +45,7 @@ class GPT:
         system_message = identifique_query()
         return json.loads(self.completion(history, system_message, True))
 
-    def conversation(self, history, projects=False):
+    def conversation(self, history, projects=False, show=False):
         info = self.info
         if projects:
             info = {
@@ -55,8 +55,8 @@ class GPT:
             }
             info["projects"] = projects
 
-        system_message = basic_info(info)
-        return self.completion(history, system_message, False)
+        system_message = basic_info(info, show)
+        return self.completion(history, system_message, json_format=show)
 
     def end_irs(self, projects, history):
         system_message = irs_prompt(projects)

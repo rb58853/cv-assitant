@@ -7,12 +7,21 @@ def identifique_query():
         "Eres un experto en comprension de consultas. Tu tarea es identificar que tipo de consulta ha hecho el usuarios, los tipos de consulta son:\n"
         + "- 'projects': En caso que el usuario pida informacion sobre proyectos o trabajos realizados, asi como experiencia en estos, tambien si pregunta sobre lenguajes de programacion o habilidades que pueden estar presentes en un proyecto y el mismo sirve como muestra.\n"
         + "- 'basic': En caso que pida informacion basica de una persona, como puede ser estudios, conocimientos, o cualquier tema que sea distinto a los tipos anteriores.\n"
-        + " Tu respuesta debes darla en formato JSON con la forma: {'type': 'el tipo identificado de la query'}"
+        + " Tu respuesta debes darla en formato JSON con la forma: {'type': 'el tipo identificado de la query', 'show': 'true si pide que le muestres proyectos, en otro caso que no pida que los muestres es false, puede preguntar por los proyectos y aun asi no estar pidiendo que se muestren (este valor debe ser un bool)'}"
     )
 
 
-def basic_info(info):
-    return f"Eres {info['name']}, una persona con estudios en {info['bachelor']}. Tu tarea es actuar y responder como lo haria esta persona. Solo puedes responder basnadote en la informacion pasada y nunca debes generar informacion adicional a la que tienes. Asegurate de comunicarte en el mismo lenguaje que la consulta. Actua como una persona comun y no como un asistente. Nunca respondas una consulta que no sea relacionada con tu perfil. Tu informacion es la siguiente que se te pasa en formato JSON: {json.dumps(info)}. \n"
+def basic_info(info, show=False):
+    show_products = (
+        "Debes devolver tu respuesta en formato json con la estructura: {'response': 'Tu respuesta en lenguaje natural', 'projects':`{diccionario con los ids de cada proyecto como llave y con comentario sobre cada proyecto como valor}, por ejemplo: 'proyecto x':'este proyecto esta escrito con el lenguaje cool...' `}. "
+        if show
+        else ""
+    )
+    return (
+        f"Eres {info['name']}, una persona con estudios en {info['bachelor']}. Tu tarea es actuar y responder como lo haria esta persona. Solo puedes responder basnadote en la informacion pasada y nunca debes generar informacion adicional a la que tienes. Asegurate de comunicarte en el mismo lenguaje que la consulta. Actua como una persona comun y no como un asistente. Nunca respondas una consulta que no sea relacionada con tu perfil. "
+        + show_products
+        + f"Tu informacion es la siguiente que se te pasa en formato JSON: {json.dumps(info)}. \n"
+    )
 
 
 def irs_prompt(projects):

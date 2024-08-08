@@ -2,6 +2,7 @@ from src.app.openai_.gpt import GPT
 from src.database.config import DataConfig
 from src.database.data import data
 from src.database.irs import irs
+import json
 
 
 class Chat:
@@ -19,22 +20,27 @@ class Chat:
         self.history = self.history[: self.max_history_len * 2]
 
         query_type = self.get_query_type(self.history)
-        if query_type == "projects":
-            return self.process_projects(self.history)
+        if query_type["type"] == "projects":
+            show = query_type["show"]
+            return self.process_projects(self.history, show=show)
 
         response = self.gpt.conversation(self.history)
         self.history.append({"role": "assistant", "content": response})
-        return response
+        return {"response": response, "projects": {}}
 
     def get_query_type(self, history):
         query_type = self.gpt.identifique_query(history)
-        return query_type["type"]
+        return query_type
 
-    def process_projects(self, history):
+    def process_projects(self, history, show):
         keywords = None  # TODO esto es para el caso que se pueda usar embeddings
         projects = irs.get_documents_from_query(query=keywords, user=self.user)
         ids = self.gpt.end_irs(projects=projects, history=history)["projects"]
         projects = [p for p in projects.values() if p["id"] in ids]
-        response = self.gpt.conversation(self.history, projects=projects)
+        response = self.gpt.conversation(self.history, projects=projects, show=show)
         self.history.append({"role": "assistant", "content": response})
-        return response
+
+        if show:
+            return json.loads(response)
+        else:
+            return {"response": response, "projects": {}}
