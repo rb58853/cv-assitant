@@ -83,7 +83,7 @@
     "navMeshAgentAI": {
         "id": "navMeshAgentAI",
         "title": "Nav Mesh Agent AI",
-        "keywords": "Inteligent agents, metaheuristics, heuristics, terrain simulation, multitude simulation",
+        "keywords": "Inteligent agents, metaheuristics, heuristics, terrain simulation, multitude simulation, pathfinding, A*, Disjktra",
         "skills": [
             "AI",
             "Unity",

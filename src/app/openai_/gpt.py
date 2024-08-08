@@ -1,5 +1,5 @@
 from src.config.config import ConfigGPT
-from src.config.prompts import basic_info, identifique_query
+from src.config.prompts import basic_info, identifique_query, irs_prompt
 from openai import OpenAI, AsyncOpenAI
 import json
 
@@ -43,16 +43,25 @@ class GPT:
 
     def identifique_query(self, history):
         system_message = identifique_query()
+        return json.loads(self.completion(history, system_message, True))
+
+    def conversation(self, history, projects=False):
+        info = self.info
+        if projects:
+            info = {
+                key: value
+                for key, value in zip(info.keys(), info.values())
+                if key in ConfigGPT.STRONG_FIELDS
+            }
+            info["projects"] = projects
+
+        system_message = basic_info(info)
         return self.completion(history, system_message, False)
 
-    def conversation(self, history):
-        system_message = basic_info(self.info)
-        return self.completion(history, system_message, False)
-
-    
     def end_irs(self, projects, history):
-        pass
-  
+        system_message = irs_prompt(projects)
+        return json.loads(self.completion(history, system_message, True))
+
     def reload_price(self):
         self.current_price = 0
 
@@ -76,4 +85,3 @@ class GPT:
 
         self.current_price += price
         return price
-
