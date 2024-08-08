@@ -1,10 +1,11 @@
 from src.app.openai_.gpt import GPT
+from src.database.config import DataConfig
 from src.database.data import data
 from src.database.irs import irs
 
 
 class Chat:
-    def __init__(self, user="rb58853") -> None:
+    def __init__(self, user=DataConfig.DefaultUser) -> None:
         self.gpt: GPT = GPT(info=data.get_info(user))
         self.history = []
         self.max_history_len = 5
