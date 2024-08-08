@@ -1,5 +1,5 @@
 from src.config.config import ConfigGPT
-from src.config.prompts import basic_info
+from src.config.prompts import basic_info, identifique_query
 from openai import OpenAI, AsyncOpenAI
 import json
 
@@ -23,28 +23,37 @@ class GPT:
         self.model = model
         self.current_price = 0
 
-    def identifique_query(self, history):
-        pass
-
-    def conversation(self, history):
-        system_message = basic_info(self.info)
+    def completion(self, history, system_message, json_format=False):
         messages = [item for item in history]
         messages.insert(0, {"role": "system", "content": system_message})
 
-        completion = self.client.chat.completions.create(
-            model=self.model,
-            temperature=0.4,
-            messages=messages,
+        completion = (
+            self.client.chat.completions.create(model=self.model, messages=messages)
+            if not json_format
+            else self.client.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                response_format={"type": "json_object"},
+            )
         )
+
         self.get_price(completion.usage)
         message = completion.choices[0].message.content
         return message
 
+    def identifique_query(self, history):
+        system_message = identifique_query()
+        return self.completion(history, system_message, False)
+
+    def conversation(self, history):
+        system_message = basic_info(self.info)
+        return self.completion(history, system_message, False)
+
+    
+    def end_irs(self, projects, history):
+        pass
+  
     def reload_price(self):
-        """
-        ## `def` reload_price
-        Resetea el valor de precio usado por el servicio, este es el precio total que se ha usado en una consulta dada
-        """
         self.current_price = 0
 
     def get_price(self, usage):
@@ -68,6 +77,3 @@ class GPT:
         self.current_price += price
         return price
 
-    def end_irs(self, projects, history):
-
-        pass
