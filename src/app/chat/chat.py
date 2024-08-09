@@ -21,8 +21,7 @@ class Chat:
 
         query_type = self.get_query_type(self.history)
         if query_type["type"] == "projects":
-            show = query_type["show"]
-            return self.process_projects(self.history, show=show)
+            return self.process_projects(self.history)
 
         response = self.gpt.conversation(self.history)
         self.history.append({"role": "assistant", "content": response})
@@ -32,15 +31,15 @@ class Chat:
         query_type = self.gpt.identifique_query(history)
         return query_type
 
-    def process_projects(self, history, show):
+    def process_projects(self, history):
         keywords = None  # TODO esto es para el caso que se pueda usar embeddings
         projects = irs.get_documents_from_query(query=keywords, user=self.user)
         ids = self.gpt.end_irs(projects=projects, history=history)["projects"]
         projects = [p for p in projects.values() if p["id"] in ids]
-        response = self.gpt.conversation(self.history, projects=projects, show=show)
+        response = self.gpt.conversation(self.history, projects=projects)
         self.history.append({"role": "assistant", "content": response})
 
-        if show:
+        if len(projects):
             return json.loads(response)
         else:
             return {"response": response, "projects": {}}
