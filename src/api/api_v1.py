@@ -1,6 +1,7 @@
 from fastapi.routing import APIRouter
 from fastapi import WebSocket
 import logging
+import json
 from ..app.chat.chat import Chat
 
 router = APIRouter(prefix="/api/v1", tags=["Api v1"])
@@ -19,6 +20,6 @@ async def open_chat_ws(websocket: WebSocket):
         while True:
             query = await websocket.receive_text()
             response = await chat.send_query(query)
-            await websocket.send_text(response)
+            await websocket.send_text(json.dumps(response))
     except Exception as e:
         logging.error(f"Connection with client closed ({e})")
