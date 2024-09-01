@@ -12,8 +12,8 @@ class IRS:
         if DataConfig.RamIRS:
             self.set_ducuments()
 
-    # def set_ducuments(self):
-    #     self.documents = API.get_full_projects()
+    def set_ducuments(self):
+        raise Exception("Not implemented function")
 
     def get_documents_from_query(self, query, user=DataConfig.DefaultUser):
         # TODO Aqui hay que hacer un IRS
