@@ -13,8 +13,8 @@ def load_info(user_id):
 
 
 # Este deberia usarse como endpoint del propio fastAPI
-def regenerate_info(user_id):
+def regenerate_info(github_user, github_repo):
     """
-    Regenera la informacion de un usuario
+    Regenera la informacion de un usuario desde github
     """
     pass

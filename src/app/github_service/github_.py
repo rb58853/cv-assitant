@@ -6,17 +6,18 @@ import logging
 import json
 
 g = Github(GitHubConfig.GITHUB_KEY)
-INFO = {}
 
 
 class GithubAPI:
-    def __init__(self, user) -> None:
+    def __init__(self, user, repo) -> None:
         self.gptg = InfoGeneration()
         self.user = user
-        self.user_repo = f"github.com/{user}/{user}"
-        self.short_repo = f"{user}/{user}"
+        self.user_repo = f"github.com/{user}/{repo}"
+        self.short_repo = f"{user}/{repo}"
 
     def get_user_info(self):
+        info = {}
+
         try:
             repo = g.get_repo(self.short_repo)
         except:
@@ -31,7 +32,9 @@ class GithubAPI:
 
                 for key in dictified:
                     if len(dictified[key]):
-                        INFO[key] = dictified[key]
+                        info[key] = dictified[key]
+
+        return info
 
     async def get_user_projects(self):
         def get_project_md(repo, name):
@@ -52,15 +55,13 @@ class GithubAPI:
 
         file = repo.get_contents("assistant/projects.json")
         projects = json.loads(file.decoded_content.decode("utf-8"))
-        
+
         try:
             file = repo.get_contents("assistant/config.json")
             config = json.loads(file.decoded_content.decode("utf-8"))
             base_fields = config["projects"]["base_fields"]
         except:
-            logging.warning(
-                f"unfound assistant/config.json in repo {self.user_repo}"
-            )
+            logging.warning(f"unfound assistant/config.json in repo {self.user_repo}")
             base_fields = []
 
         my_projects = []
@@ -74,7 +75,7 @@ class GithubAPI:
                     base_fields=base_fields,
                 )
             )
-        INFO["projects"] = my_projects
+        return my_projects
 
     async def get_repo_info(self, id, repo=None, md="", base_fields=[]):
         repo_name = repo
