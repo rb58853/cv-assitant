@@ -36,7 +36,7 @@ def reload_user_data(github_user, github_repo, override=False, git_token=None):
 
     github = GithubAPI(user="rb58853", repo="rb58853", github_key=git_token)
     projects = asyncio.run(github.get_user_projects())
-    info = github.get_user_info()
+    info = asyncio.run(github.get_user_info())
 
     data = info
     data["projects"] = projects

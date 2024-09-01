@@ -71,7 +71,7 @@ class GPT:
 
         self.get_price(completion.usage)
         message = completion.choices[0].message.content
-        
+
         # return message
         return json.loads(message) if json_format else message
 
@@ -132,5 +132,9 @@ class InfoGeneration(GPT):
             history=history, system_message=system_message, json_format=True
         )
 
-    def decode_md(self, md):
-        pass
+    async def decode_md(self, md):
+        system_message = GenerativePrompts.md_info()
+        history = [{"role": "user", "content": md}]
+        return await self.async_completion(
+            history=history, system_message=system_message, json_format=True
+        )

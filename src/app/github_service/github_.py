@@ -18,8 +18,16 @@ class GithubAPI:
         self.user_repo = f"github.com/{user}/{repo}"
         self.short_repo = f"{user}/{repo}"
 
-    def get_user_info(self):
+    async def get_user_info(self):
         info = {}
+
+        async def get_file_info(file):
+            md = file.decoded_content.decode("utf-8")
+            dictified = await self.gptg.decode_md(md)
+
+            for key in dictified:
+                if len(dictified[key]):
+                    info[key] = dictified[key]
 
         try:
             repo = self.g.get_repo(self.short_repo)
@@ -30,12 +38,7 @@ class GithubAPI:
         files = repo.get_contents("assistant/info")
         for content_file in files:
             if content_file.type == "file" and content_file.name[-3:].lower() == ".md":
-                temp = content_file.decoded_content.decode("utf-8")
-                dictified = markdown_to_json.dictify(temp)
-
-                for key in dictified:
-                    if len(dictified[key]):
-                        info[key] = dictified[key]
+                await get_file_info(content_file)
 
         return info
 

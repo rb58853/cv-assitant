@@ -4,7 +4,7 @@ import asyncio
 github = GithubAPI(user="rb58853", repo="rb58853")
 
 projects = asyncio.run(github.get_user_projects())
-info = github.get_user_info()
+info = asyncio.run(github.get_user_info())
 
 data = info
 data["projects"] = projects
