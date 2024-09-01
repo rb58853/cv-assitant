@@ -5,11 +5,14 @@ from src.config.config import GitHubConfig
 import logging
 import json
 
-g = Github(GitHubConfig.GITHUB_KEY)
-
 
 class GithubAPI:
-    def __init__(self, user, repo) -> None:
+    def __init__(self, user, repo, github_key=GitHubConfig.GITHUB_KEY) -> None:
+        self.g = (
+            Github(github_key)
+            if github_key is not None
+            else Github(GitHubConfig.GITHUB_KEY)
+        )
         self.gptg = InfoGeneration()
         self.user = user
         self.user_repo = f"github.com/{user}/{repo}"
@@ -19,7 +22,7 @@ class GithubAPI:
         info = {}
 
         try:
-            repo = g.get_repo(self.short_repo)
+            repo = self.g.get_repo(self.short_repo)
         except:
             logging.error(f"unfound repo {self.user_repo}")
             return None
@@ -48,7 +51,7 @@ class GithubAPI:
                 return ""
 
         try:
-            repo = g.get_repo(self.short_repo)
+            repo = self.g.get_repo(self.short_repo)
         except:
             logging.warning(f"unfound repo {self.user_repo}")
             return {}
@@ -82,7 +85,7 @@ class GithubAPI:
         if repo:
             repo = repo.replace("github.com/", "").replace("https://", "")
             try:
-                repo = g.get_repo(repo)
+                repo = self.g.get_repo(repo)
             except:
                 logging.error(f"unfound repo {repo_name}")
                 return None
@@ -100,3 +103,39 @@ class GithubAPI:
         result = await self.gptg.decode_work(work, base_fields)
         result["id"] = id
         return result
+
+    def save_data(self, json_var):
+        repo = self.g.get_repo(self.short_repo)
+        try:
+            file = repo.get_contents("assistant/auto/data.json")
+
+            content_file = repo.update_file(
+                path="assistant/auto/data.json",
+                message="Crear un nuevo archivo",
+                content=json.dumps(json_var),
+                sha=file.sha,
+            )
+            return content_file
+
+        except:
+            try:
+                repo = self.g.get_repo(self.short_repo)
+                content_file = repo.create_file(
+                    path="assistant/auto/data.json",
+                    message="Crear un nuevo archivo",
+                    content=json.dumps(json_var),
+                )
+                return content_file
+            except:
+                logging.error(f"unfound repo {self.user_repo}")
+                return False
+
+    def load_data(self):
+        try:
+            repo = self.g.get_repo(self.short_repo)
+        except:
+            logging.error(f"unfound repo {self.user_repo}")
+            return None
+
+        file = repo.get_contents("assistant/auto/data.json")
+        return json.loads(file.decoded_content.decode("utf-8"))

@@ -3,6 +3,9 @@ from fastapi import WebSocket
 import logging
 import json
 from ..app.chat.chat import Chat
+from src.app.github_service.github_ import GithubAPI, GitHubConfig
+import asyncio
+
 
 router = APIRouter(prefix="/api/v1", tags=["Api v1"])
 
@@ -23,3 +26,19 @@ async def open_chat_ws(websocket: WebSocket):
             await websocket.send_text(json.dumps(response))
     except Exception as e:
         logging.error(f"Connection with client closed ({e})")
+
+
+@router.post("/data/user/reload")
+def reload_user_data(github_user, github_repo, override=False, git_token=None):
+    """
+    Regenera la informacion de un usuario desde github
+    """
+
+    github = GithubAPI(user="rb58853", repo="rb58853", github_key=git_token)
+    projects = asyncio.run(github.get_user_projects())
+    info = github.get_user_info()
+
+    data = info
+    data["projects"] = projects
+
+    github.save_data(data)
