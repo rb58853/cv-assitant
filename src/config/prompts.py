@@ -1,5 +1,5 @@
 import json
-from src.config.config import ConfigGPT
+from src.config.config import ConfigGPT, GenerationConfig
 
 
 def identifique_query():
@@ -40,3 +40,9 @@ def irs_prompt(projects):
         "Eres un experto en recuperacion de informacion. Tu tarea es dada la consulta del usuario, extraer una lista de proyectos realmente relevantes a esta consulta. Debes devolver la lista de los id de cada proycto en el formato JSON {'projects': [lista de los id de los proyectos recuperados]}. Analiza con detenimiento la consulta del cliente para que devuelvas los proyectos acorde a esta, por ejemplo la consulta puede pedir proyectos que no le hayas mostrado aun o preguntar por otros proyectos o por mas proyectos, en estos casos debes filtrar y devolver solo proyectos que aun no hayas mostrado. Respira profundo y vamos paso a paso."
         + f" Los proyectos disponibles estan dados en el siguiente JSON: {projects_str}"
     )
+
+
+class GenerativePrompts:
+    def work_info():
+        fields = GenerationConfig.work_fields
+        return f"Eres un experto en comprension de proyectos y markdown. Tu tarea es, dado un texto en formato markdown, extraer en formato Json la informacion de este proyecto. El JSON debe tener cada campo que consideres que debe pertenecer al proyecto, y debe tener obligatoriamente los campos {fields} "

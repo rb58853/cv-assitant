@@ -1,5 +1,10 @@
 from src.config.config import ConfigGPT
-from src.config.prompts import basic_info, identifique_query, irs_prompt
+from src.config.prompts import (
+    basic_info,
+    identifique_query,
+    irs_prompt,
+    GenerativePrompts,
+)
 from openai import OpenAI, AsyncOpenAI
 import json
 
@@ -23,27 +28,54 @@ class GPT:
         self.model = model
         self.current_price = 0
 
-    def completion(self, history, system_message, json_format=False):
+    def completion(self, history, system_message, json_format=False, temperature=0.4):
         messages = [item for item in history]
         messages.insert(0, {"role": "system", "content": system_message})
 
         completion = (
-            self.client.chat.completions.create(model=self.model, messages=messages)
+            self.client.chat.completions.create(
+                model=self.model, messages=messages, temperature=temperature
+            )
             if not json_format
             else self.client.chat.completions.create(
                 model=self.model,
                 messages=messages,
+                temperature=temperature,
                 response_format={"type": "json_object"},
             )
         )
 
         self.get_price(completion.usage)
         message = completion.choices[0].message.content
-        return message
+
+        return json.loads(message) if json_format else message
+
+    async def async_completion(
+        self, history, system_message, json_format=False, temperature=0.4
+    ):
+        messages = [item for item in history]
+        messages.insert(0, {"role": "system", "content": system_message})
+
+        completion = (
+            await self.asyncclient.chat.completions.create(
+                model=self.model, messages=messages, temperature=temperature
+            )
+            if not json_format
+            else await self.asyncclient.chat.completions.create(
+                model=self.model,
+                messages=messages,
+                temperature=temperature,
+                response_format={"type": "json_object"},
+            )
+        )
+
+        self.get_price(completion.usage)
+        message = completion.choices[0].message.content
+        return await json.loads(message) if json_format else await message
 
     def identifique_query(self, history):
         system_message = identifique_query()
-        return json.loads(self.completion(history, system_message, True))
+        return self.completion(history, system_message, True)
 
     def conversation(self, history, projects=False):
         info = self.info
@@ -60,7 +92,7 @@ class GPT:
 
     def end_irs(self, projects, history):
         system_message = irs_prompt(projects)
-        return json.loads(self.completion(history, system_message, True))
+        return self.completion(history, system_message, True)
 
     def reload_price(self):
         self.current_price = 0
@@ -85,3 +117,18 @@ class GPT:
 
         self.current_price += price
         return price
+
+
+class InfoGeneration(GPT):
+    def __init__(self, info, model=ConfigGPT.DEFAULT_MODEL_NAME):
+        super().__init__(info, model)
+
+    def decode_work(self, work):
+        system_message = GenerativePrompts.work_info()
+        history = [{"role": "user", "content": work}]
+        return self.async_completion(
+            history=history, system_message=system_message, json_format=True
+        )
+
+    def decode_md(self, md):
+        pass

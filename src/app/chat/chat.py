@@ -1,4 +1,4 @@
-from src.app.openai_.gpt import GPT
+from src.app.openai_.gpt.gpt import GPT
 from src.database.config import DataConfig
 from src.database.data import data
 from src.database.irs import irs
@@ -40,6 +40,6 @@ class Chat:
         self.history.append({"role": "assistant", "content": response})
 
         if len(projects):
-            return json.loads(response)
+            return response
         else:
             return {"response": response, "projects": {}}

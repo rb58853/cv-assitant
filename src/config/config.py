@@ -17,7 +17,9 @@ class ConfigGPT:
 
     OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
-    PROJECTS_KEYS = ["id", "title", "keywords", "skills", "languages"]
+    PROJECTS_KEYS = ["id", "title", "keywords", "skills"]
+
+    WEEK_FIELDS = []
 
     STRONG_FIELDS = [
         "name",
@@ -31,3 +33,11 @@ class ConfigGPT:
         "about",
         "interests",
     ]
+
+
+class GitHubConfig:
+    GITHUB_KEY = os.environ.get("GITHUB_KEY")
+
+
+class GenerationConfig:
+    work_fields = ["title", "keywords", "skills"]
