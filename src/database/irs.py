@@ -8,12 +8,12 @@ else:
 
 class IRS:
     def __init__(self) -> None:
-        self.documents = None
+        self.documents = {}
         if DataConfig.RamIRS:
             self.set_ducuments()
 
-    def set_ducuments(self):
-        self.documents = API.get_full_projects()
+    # def set_ducuments(self):
+    #     self.documents = API.get_full_projects()
 
     def get_documents_from_query(self, query, user=DataConfig.DefaultUser):
         # TODO Aqui hay que hacer un IRS

@@ -12,9 +12,6 @@ class Data:
         if DataConfig.RamData:
             self.set_info()
 
-    def set_info(self):
-        self.info = API.get_full_info()
-
     def get_info(self, user):
         if DataConfig.RamData:
             return self.info[user]

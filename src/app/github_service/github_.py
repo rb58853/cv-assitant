@@ -105,6 +105,7 @@ class GithubAPI:
 
         result = await self.gptg.decode_work(work, base_fields)
         result["id"] = id
+        result["github_repo"] = repo_name
         return result
 
     def save_data(self, json_var):
