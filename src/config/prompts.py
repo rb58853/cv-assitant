@@ -43,6 +43,9 @@ def irs_prompt(projects):
 
 
 class GenerativePrompts:
-    def work_info():
-        fields = GenerationConfig.work_fields
-        return f"Eres un experto en comprension de proyectos y markdown. Tu tarea es, dado un texto en formato markdown, extraer en formato Json la informacion de este proyecto. El JSON debe tener cada campo que consideres que debe pertenecer al proyecto, y debe tener obligatoriamente los campos {fields} "
+    def work_info(base_fields):
+        fields = GenerationConfig.work_fields + base_fields
+        return f"Eres un experto en comprension de proyectos y markdown. Tu tarea es, dado un texto en formato markdown, extraer en formato Json la informacion de este proyecto. El JSON debe tener todos los campos que posea implicitamente el proyecto, y debe tener obligatoriamente los campos {fields}. Por ejemplo pueden existir campos como descripcion, objetivos, desempenno, logros y todos los que esten de forma implicita en el texto pasado. Las keywords es el campo mas importante de todos, debe ser muy completo y abarcar todas las palabras que son claves en este proyecto. Asegurate de ustilizar el lenguaje ingles."
+
+    def md_info():
+        return

@@ -1,3 +1,6 @@
-from src.app.github_service.github_ import get_project_info
+from src.app.github_service.github_ import GithubAPI
+import asyncio
 
-get_project_info("https://github.com/rb58853/NavAgent-AI")
+github = GithubAPI('rb58853')
+# asyncio.run(github.get_repo_info("https://github.com/rb58853/NavAgent-AI"))
+asyncio.run(github.get_user_projects())

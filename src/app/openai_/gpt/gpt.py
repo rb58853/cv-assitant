@@ -71,7 +71,9 @@ class GPT:
 
         self.get_price(completion.usage)
         message = completion.choices[0].message.content
-        return await json.loads(message) if json_format else await message
+        
+        # return message
+        return json.loads(message) if json_format else message
 
     def identifique_query(self, history):
         system_message = identifique_query()
@@ -120,13 +122,13 @@ class GPT:
 
 
 class InfoGeneration(GPT):
-    def __init__(self, info, model=ConfigGPT.DEFAULT_MODEL_NAME):
-        super().__init__(info, model)
+    def __init__(self, model=ConfigGPT.DEFAULT_MODEL_NAME):
+        super().__init__(info="", model=model)
 
-    def decode_work(self, work):
-        system_message = GenerativePrompts.work_info()
+    async def decode_work(self, work, base_fields):
+        system_message = GenerativePrompts.work_info(base_fields)
         history = [{"role": "user", "content": work}]
-        return self.async_completion(
+        return await self.async_completion(
             history=history, system_message=system_message, json_format=True
         )
 
