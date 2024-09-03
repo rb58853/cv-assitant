@@ -3,6 +3,7 @@ import asyncio
 import websockets
 import json
 
+
 class APIClient:
     def __init__(
         self,
@@ -13,6 +14,13 @@ class APIClient:
         self.http_url = f"{http_url}"
         self.ws_url = f"{ws_url}"
         self.port = port
+
+    def load_data(self, user, repo):
+        url = f"{self.http_url}/data/user/load"
+        data = {"github_user": user, "github_repo": repo}
+        headers = {"Content-Type": "application/json"}
+        response = requests.post(url, params=data, headers=headers)
+        return response.json()
 
     async def websocket_chat(self, user):
         uri = f"{self.ws_url}/api/v1/open_chat"

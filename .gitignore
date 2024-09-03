@@ -153,5 +153,5 @@ dmypy.json
 cython_debug/
 
 #database
-database/data/*
+database/data/*.json
 database/data/rb58853.json

@@ -51,6 +51,6 @@ def load_user_data_from_git(github_user, github_repo, git_token=None):
     Regenera la informacion de un usuario desde github
     """
 
-    github = GithubAPI(user="rb58853", repo="rb58853", github_key=git_token)
+    github = GithubAPI(user=github_user, repo=github_repo, github_key=git_token)
     data = github.load_data()
     save_data(user=github_user, data=data)

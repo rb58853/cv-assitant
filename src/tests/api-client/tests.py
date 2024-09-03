@@ -18,4 +18,7 @@ def chating(user="rb58853"):
     clear_console()
     return asyncio.run(client.websocket_chat(user=user))
 
+
 chating("rb58853")
+
+client.load_data("rb58853", "rb58853")
