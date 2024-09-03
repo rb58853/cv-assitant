@@ -3,9 +3,11 @@ from src.config.prompts import (
     basic_info,
     identifique_query,
     irs_prompt,
+    select_fields_from_query,
     GenerativePrompts,
 )
 from openai import OpenAI, AsyncOpenAI
+from src.database.user_data import UserData
 import json
 
 
@@ -19,12 +21,12 @@ class GPT:
 
     def __init__(
         self,
-        info,
+        user,
         model=ConfigGPT.DEFAULT_MODEL_NAME,
     ):
         self.client = OpenAI(api_key=ConfigGPT.OPENAI_API_KEY)
         self.asyncclient = AsyncOpenAI(api_key=ConfigGPT.OPENAI_API_KEY)
-        self.info = info
+        self.user_data = UserData(user)
         self.model = model
         self.current_price = 0
 
@@ -75,19 +77,23 @@ class GPT:
         # return message
         return json.loads(message) if json_format else message
 
+    def select_fields_from_query(self, history):
+        system_message = select_fields_from_query(self.user_data.get_fields())
+        return self.completion(history, system_message, True)["fields"]
+
     def identifique_query(self, history):
         system_message = identifique_query()
         return self.completion(history, system_message, True)
 
-    def conversation(self, history, projects=False):
-        info = self.info
-        if projects:
-            info = {
-                key: value
-                for key, value in zip(info.keys(), info.values())
-                if key in ConfigGPT.STRONG_FIELDS
-            }
-            info["projects"] = projects
+    def conversation(self, history, fields, projects=False):
+        info = self.user_data.get_info_from_fields(fields)
+        # if projects:
+        #     info = {
+        #         key: value
+        #         for key, value in zip(info.keys(), info.values())
+        #         if key in ConfigGPT.STRONG_FIELDS
+        #     }
+        #     info["projects"] = projects
 
         system_message = basic_info(info, projects)
         return self.completion(history, system_message, json_format=projects)

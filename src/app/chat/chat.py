@@ -1,13 +1,12 @@
 from src.app.openai_.gpt.gpt import GPT
-from src.database.config import DataConfig
-from src.database.data import data
+from src.database.config import UserDataConfig
 from src.database.irs import irs
 import json
 
 
 class Chat:
-    def __init__(self, user=DataConfig.DefaultUser) -> None:
-        self.gpt: GPT = GPT(info=data.get_info(user))
+    def __init__(self, user=UserDataConfig.DefaultUser) -> None:
+        self.gpt: GPT = GPT(user=user)
         self.history = []
         self.max_history_len = 5
         self.user = user
@@ -19,11 +18,13 @@ class Chat:
         self.history.append({"role": "user", "content": query})
         self.history = self.history[: self.max_history_len * 2]
 
-        query_type = self.get_query_type(self.history)
-        if query_type["type"] == "projects":
-            return self.process_projects(self.history)
+        query_fields = self.gpt.select_fields_from_query(self.history)
 
-        response = self.gpt.conversation(self.history)
+        # query_type = self.get_query_type(self.history)
+        # if query_type["type"] == "projects":
+        #     return self.process_projects(self.history)
+
+        response = self.gpt.conversation(self.history, query_fields)
         self.history.append({"role": "assistant", "content": response})
         return {"response": response, "projects": {}}
 

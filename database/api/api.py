@@ -16,11 +16,11 @@ def get_info(user):
         return None
 
 
-def get_field_info(user, field_name):
-    try:
-        return get_user_data(user)[field_name]
-    except:
-        return None
+# def get_field_info(user, field_name):
+#     try:
+#         return get_user_data(user)[field_name]
+#     except:
+#         return None
 
 
 # def get_fields_from_user(user):
