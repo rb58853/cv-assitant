@@ -14,9 +14,6 @@ class LocalData:
 
     def get_field(user, field):
         return get_field_info(user, field)
-    
-    def get_user_fields(user):
-        return get_fields_from_user(user)
 
 
 class Requests:
@@ -32,5 +29,3 @@ class Requests:
     def get_field(user, field):
         return get_field_info(user, field)
     
-    def get_user_fields(user):
-        return get_fields_from_user(user)

@@ -23,8 +23,8 @@ def get_field_info(user, field_name):
         return None
 
 
-def get_fields_from_user(user):
-    try:
-        return get_user_data(user).fields()
-    except:
-        return None
+# def get_fields_from_user(user):
+#     try:
+#         return get_user_data(user).fields()
+#     except:
+#         return None

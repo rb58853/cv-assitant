@@ -20,7 +20,7 @@ class Data:
                 self.info[user] = data
             return data
 
-    def pop_user(self, user):
+    def forget_user(self, user):
         if DataConfig.RamData:
             try:
                 self.info.pop(user, None)

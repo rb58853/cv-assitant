@@ -1,18 +1,21 @@
 {
-    "Information": {
-        "Basic Info": {
+    "information": {
+        "basic_info": {
             "name": "Raul Beltran Gomez",
             "github": "https://github.com/rb58853",
             "bachelor": "Computer Science",
-            "university": "University of Havana"
+            "university": "University of Havana",
+            "citizenship": [
+                "Cuban \ud83c\udde8\ud83c\uddfa",
+                "Spanish \ud83c\uddea\ud83c\uddf8"
+            ],
+            "location": "Havana, Cuba",
+            "phone": "+53 58486223",
+            "gmail": "rb58853@gmail.com"
         },
-        "About": {
-            "description": "I am Ra\u00fal, a computer scientist with a solid background in mathematics. My specialty lies in the analysis and design of algorithms, combined with advanced skills in frontend and backend programming, which allows me to work as a full-stack developer. My experience extends to the application of machine learning techniques and artificial intelligence, with my thesis project being in this field. My methodological approach includes the use of agile methodologies such as Scrum and Kanban, which allows me to work efficiently and adaptably. I value the importance of maintaining clean, organized, and well-commented code, following the SOLID principles to ensure the quality, maintainability, and scalability of software."
-        },
-        "Interests": {
-            "description": "My professional interests lean towards number theory, graph theory, and the development of solutions in the field of machine learning and artificial intelligence. I am open to working on projects that require both frontend and backend development, as well as game development, and I am committed to creating optimal solutions."
-        },
-        "Study fields": [
+        "about": "I am Ra\u00fal, a computer scientist with a solid background in mathematics. My specialty lies in the analysis and design of algorithms, combined with advanced skills in frontend and backend programming, which allows me to work as a full-stack developer. My experience extends to the application of machine learning techniques and artificial intelligence, with my thesis project being in this field. My methodological approach includes the use of agile methodologies such as Scrum and Kanban, which allows me to work efficiently and adaptably. I value the importance of maintaining clean, organized, and well-commented code, following the SOLID principles to ensure the quality, maintainability, and scalability of software.",
+        "interests": "My professional interests lean towards number theory, graph theory, and the development of solutions in the field of machine learning and artificial intelligence. I am open to working on projects that require both frontend and backend development, as well as game development, and I am committed to creating optimal solutions.",
+        "study_fields": [
             "Artificial Intelligence and Machine Learning",
             "Information Retrieval Systems",
             "Compilers",
@@ -26,11 +29,17 @@
             "Graph Theory",
             "Number Theory"
         ],
-        "Languages": {
-            "Spanish": "Native",
-            "English": "A2"
-        },
-        "Knowledge": [
+        "languages": [
+            {
+                "language": "Spanish",
+                "proficiency": "Native"
+            },
+            {
+                "language": "English",
+                "proficiency": "A2"
+            }
+        ],
+        "knowledge": [
             "Graph Theory",
             "Number Theory",
             "Language Theory",
@@ -41,67 +50,108 @@
         ]
     },
     "ProgrammingLanguages": {
-        "Python": "very high",
-        "C#": "very high",
-        "Javascript": "high",
-        "MIPS": "high",
-        "JupyterNotebook": "high",
-        "Markdown": "high",
-        "CSS": "high",
-        "LaTex": "medium",
-        "Dart": "medium",
-        "HTML": "medium",
-        "C++": "low",
-        "Prolog": "low",
-        "C": "low"
+        "languages": [
+            {
+                "name": "Python",
+                "proficiency": "very high"
+            },
+            {
+                "name": "C#",
+                "proficiency": "very high"
+            },
+            {
+                "name": "Javascript",
+                "proficiency": "high"
+            },
+            {
+                "name": "MIPS",
+                "proficiency": "high"
+            },
+            {
+                "name": "Jupyter Notebook",
+                "proficiency": "high"
+            },
+            {
+                "name": "Markdown",
+                "proficiency": "high"
+            },
+            {
+                "name": "CSS",
+                "proficiency": "high"
+            },
+            {
+                "name": "LaTex",
+                "proficiency": "medium"
+            },
+            {
+                "name": "Dart",
+                "proficiency": "medium"
+            },
+            {
+                "name": "HTML",
+                "proficiency": "medium"
+            },
+            {
+                "name": "C++",
+                "proficiency": "low"
+            },
+            {
+                "name": "Prolog",
+                "proficiency": "low"
+            },
+            {
+                "name": "C",
+                "proficiency": "low"
+            }
+        ]
     },
     "skills": [
         {
             "name": "ReactJs",
             "level": "high",
-            "info": "I have a good command of the ReactJS framework, having created some projects here such as my portfolio and other websites.",
+            "info": "I have a good command of the ReactJS framework, having created some projects here, such as my portfolio and other web pages.",
             "experience_time": "5 months"
         },
         {
             "name": "Artificial Intelligence",
             "level": "high",
-            "info": "I have a good command of the field of basic artificial intelligence, focusing more on the use of heuristics and metaheuristics.",
+            "info": "I have a strong understanding of basic artificial intelligence, focusing more on the use of heuristics and metaheuristics.",
             "experience_time": "1 year"
         },
         {
             "name": "React Native",
             "level": "medium",
-            "info": "I have worked on some personal projects with React Native and I handle this tool well since it is very similar to ReactJS.",
+            "info": "I have worked on some personal projects with React Native and I manage well with this tool as it is very similar to ReactJS.",
             "experience_time": "1 month"
         },
         {
             "name": "Simulation",
             "level": "medium",
-            "info": "My main focus in this field is based on intelligent agents and multi-agent systems.",
+            "info": "My main focus in this field is based on intelligent agent systems and multi-agent systems.",
             "experience_time": "3 months"
         },
         {
             "name": "Machine Learning",
             "level": "very high",
-            "info": "I have worked on projects related to this field such as the use of OpenAI's LLMs. I have also applied this knowledge to information retrieval using embeddings. Regarding training and model creation, I have experience with recurrent neural networks, transformers or attention layers, and convolutional networks. The main focus I have used in this skill is on images and natural language.",
+            "info": "I have worked on projects related to this field, such as using OpenAI's LLMs. I have also applied this knowledge to information retrieval using embeddings. In terms of training and creating models, I have experience with recurrent neural networks, transformers, attention layers, and convolutional networks. The main focus I have used in this skill is on images and natural language.",
             "experience_time": "2 years"
         },
         {
             "name": ".Net",
             "level": "medium",
-            "info": "I have used the .net ORM for simple personal projects and I handle the C# language used for this environment very well.",
+            "info": "I have used the .NET ORM for simple personal projects and I have a good command of the C# language used in this environment.",
             "experience_time": "1 month"
         },
         {
             "name": "Information Retrieval Systems",
             "level": "very high",
-            "info": "I have worked on projects related to this field combining it with the use of LLM and embeddings. I am familiar with this skill both with the use of generated vectors (like embeddings) and with any type of vector or term-based retrieval. I also know data structures like TRIE perfectly to achieve the lowest time complexity in these types of problems. I am currently working on an OpenSource project in this field.",
+            "info": "I have worked on projects related to this field, combining it with the use of LLMs and embeddings. I am familiar with this skill both with the use of generated vectors (such as embeddings) and with any type of vector or term-based retrieval. I also have a thorough understanding of data structures like TRIE to achieve the lowest time complexity in these types of problems. I am currently working on an OpenSource project in this field.",
             "experience_time": "3 years"
         },
         {
             "name": "Design and Analysis of Algorithms",
             "level": "very high",
-            "info": "The design and analysis of algorithms is the basic skill of a computer scientist; we are highly prepared to design and analyze algorithms exhaustively and effectively, achieving the best possible computational complexities for each problem that arises.",
+            "info": "The design and analysis of algorithms is a fundamental skill for a computer scientist. We are highly prepared to design and analyze algorithms exhaustively and effectively, achieving the best possible computational complexities for each problem that arises.",
             "experience_time": "5 years"
         },
         {
@@ -139,33 +189,42 @@
     ],
     "Socials": {
         "Telegram": "@rb58853",
-        "Github": "******",
-        "Phone": "********"
+        "Github": "https://github.com/rb58853",
+        "Phone": "+53 58486223",
+        "Gmail": "rb58853@gmail.com"
     },
     "projects": [
         {
             "title": "Image Retrieval System using Machine Learning",
             "keywords": [
-                "Embeddings",
-                "Multimodal Embeddings",
-                "Image Retrieval",
+                "Image Retrieval System",
                 "Machine Learning",
-                "AI",
-                "Segment Anything Model",
-                "CLIP Model",
-                "Precise Queries",
+                "Multimodal Embeddings",
+                "Segment Anything (SAM)",
+                "Constrative Language-Image Pretraining (CLIP)",
                 "Image Segmentation",
-                "Positional Information"
+                "Text-to-Image Matching",
+                "Positional Information Processing",
+                "Information Retrieval Systems",
+                "Artificial Intelligence",
+                "Image Processing",
+                "Natural Language Processing",
+                "Embeddings",
+                "Query Processing",
+                "Indexing Process",
+                "Retrieval Mechanism"
             ],
             "skills": [
-                "IRS",
-                "ML",
-                "AI"
+                "Information Retrieval Systems (IRS)",
+                "Machine Learning (ML)",
+                "Artificial Intelligence (AI)",
+                "Image Processing",
+                "Natural Language Processing"
             ],
             "programming_languages": [
                 "Python"
             ],
-            "description": "In this project, the problem of precise image retrieval is addressed. The work employs a new approach: the application of the Segment Anything (SAM) segmentation models and the Constractive Language-Image Pretraining (CLIP) model for the generation of multimodal embeddings. Special emphasis is placed on image retrieval via precise queries, taking into account the position of image segments that compose the same, processing both text and images. This thesis project focuses on retrieving images using text as input. During indexing, embeddings of the image and its segmentations are created to achieve retrieval based on positional information. The Meta SAM (Segment Anything Model) is used to segment the images, and each segmentation generates a multimodal embedding using the OpenAI CLIP model, which generates embeddings for both images and text. Using all generated embeddings, both for images and the original image segmentation, retrieval is performed by matching text against images.",
+            "description": "This project focuses on developing an advanced Image Retrieval System (IRS) using machine learning techniques. It employs cutting-edge models like Segment Anything (SAM) and Constrative Language-Image Pretraining (CLIP) to create multimodal embeddings for precise image retrieval based on text queries. The project tackles the challenging task of precise image retrieval using text queries, involving image segmentation, multimodal embeddings generation, indexing process, query processing, and retrieval mechanism.",
             "id": "IRSImagesCLIP",
             "github_repo": null
         },
@@ -192,16 +251,315 @@
                 "Implementation of complex data structures with graphs",
                 "Simulation of intelligent agents",
                 "Optimization of search algorithms (A*, Real-Time A*)",
-                "Implementation of perception techniques, spatial ordering, and collision detection",
+                "Implementation of perception, spatial ordering, and collision detection techniques",
                 "Use of metaheuristics for algorithm optimization",
                 "Development of real-time navigation systems"
             ],
             "programming_languages": [
                 "C#"
             ],
-            "description": "This project focuses on creating intelligent navigation systems for agents that interact with each other and are influenced by weather, seasonal, and terrain conditions. The main objective is to develop advanced algorithms to determine and simulate the optimal movements of these agents in complex and dynamically changing environments.",
+            "description": "This project focuses on the creation of intelligent navigation systems for agents that interact with each other and are influenced by weather, seasonal, and terrain conditions. The main objective is to develop advanced algorithms to determine and simulate the optimal movements of these agents in complex and dynamically changing environments.",
             "id": "navMeshAgentAI",
             "github_repo": "https://github.com/rb58853/NavAgent-AI"
+        },
+        {
+            "title": "Audio Genre Classification Project",
+            "keywords": [
+                "Music genre",
+                "CNN",
+                "RNN",
+                "Spectrograms",
+                "MFCC",
+                "Conv1D",
+                "Encoder",
+                "Feature extraction",
+                "Machine learning",
+                "Artificial intelligence",
+                "Signal processing",
+                "Feature engineering",
+                "GTZAN dataset",
+                "Model evaluation",
+                "Accuracy metrics",
+                "Song lyrics analysis",
+                "Wavelet Transform"
+            ],
+            "skills": [
+                "Machine Learning",
+                "Artificial Intelligence",
+                "Signal Processing",
+                "Feature Engineering"
+            ],
+            "programming_languages": [
+                "Python"
+            ],
+            "description": "The Audio Genre Classification project aims to develop robust models for categorizing music tracks into predefined genres. It implements multiple feature extraction techniques, develops CNN and RNN models, utilizes the GTZAN dataset for evaluation, and conducts thorough model performance evaluations, achieving state-of-the-art results with accuracies between 0.75 and 0.80.",
+            "id": "audioML",
+            "github_repo": null
+        },
+        {
+            "title": "Devmans ChatBot",
+            "keywords": [
+                "E-commerce chat-bot",
+                "Typesense data",
+                "Embeddings",
+                "NLP (Natural Language Processing)",
+                "Products retrieval",
+                "Machine Learning",
+                "Information Retrieval System",
+                "Artificial Intelligence",
+                "Conversational interface",
+                "E-commerce product discovery",
+                "Customer search experience",
+                "Personalized product recommendations",
+                "Intelligent assistant"
+            ],
+            "skills": [
+                "Machine Learning",
+                "Information Retrieval",
+                "Natural Language Processing",
+                "E-commerce Integration"
+            ],
+            "programming_languages": [
+                "Python"
+            ],
+            "description": "The Devman ChatBot is an AI-powered conversational interface designed to enhance e-commerce product discovery. This project aims to revolutionize e-commerce product discovery by leveraging cutting-edge technologies, including embeddings for efficient similarity matching, Typesense for fast product searches, OpenAI GPT API for advanced natural language processing, and vector-based approaches for enhanced information retrieval.",
+            "id": "chatbot",
+            "github_repo": null
+        },
+        {
+            "title": "8 Colors Problem",
+            "keywords": [
+                "Dynamic programming (DP)",
+                "Algorithms analysis",
+                "best computational complexity",
+                "subsequence",
+                "constraints",
+                "elements types",
+                "sets",
+                "consecutive elements"
+            ],
+            "skills": [
+                "Design and Analysis of Algorithms"
+            ],
+            "programming_languages": [
+                "Python"
+            ],
+            "description": "Given an array A that contains only elements of 8 different types, the problem consists in finding the maximum subsequence T, which satisfies the constraints: For every pair of sets Ci, Cj of elements of specific types, it holds that |Ci| - |Cj| \u2264 1. Elements of the same set have to be consecutive in T.",
+            "id": "colorProblem",
+            "github_repo": null
+        },
+        {
+            "title": "Cool Compiler Project",
+            "keywords": [
+                "Cool",
+                "compiler",
+                "MIPS assembly",
+                "object-oriented language",
+                "automatic memory management",
+                "strong static typing",
+                "compiler design",
+                "language theory",
+                "parsing techniques",
+                "semantic analysis",
+                "code generation",
+                "lexical analysis",
+                "syntax analysis",
+                "intermediate representation",
+                "CIL",
+                "educational purposes",
+                "undergraduate compiler courses",
+                "hands-on experience"
+            ],
+            "skills": [
+                "Compiler Design and Implementation",
+                "Language Theory",
+                "Parsing Techniques",
+                "Semantic Analysis",
+                "Code Generation"
+            ],
+            "programming_languages": [
+                "Cool",
+                "MIPS",
+                "Python"
+            ],
+            "description": "The Cool Compiler project focuses on developing a compiler for the Classroom Object-Oriented Language (Cool). This project aims to create a functional compiler that translates Cool programs into MIPS assembly code, demonstrating key concepts in compiler design and implementation. The project involves several crucial stages in compiler design including lexical analysis, syntax analysis, semantic analysis, intermediate representation generation, and code generation. It is designed primarily for educational purposes in undergraduate compiler courses and provides hands-on experience with compiler development.",
+            "id": "coolCompiler",
+            "github_repo": null
+        },
+        {
+            "title": "Distributed FTP System",
+            "keywords": [
+                "Distributed FTP",
+                "Bully Algorithm",
+                "Leader Election",
+                "Network Communication",
+                "Data Persistence",
+                "Distributed Systems",
+                "Fault-Tolerant Systems",
+                "Concurrent Programming",
+                "File Transfer Protocol",
+                "Node Coordination",
+                "Failure Management",
+                "Recovery Mechanisms",
+                "Scalability",
+                "Secure File Transfers"
+            ],
+            "skills": [
+                "Distributed Systems Design",
+                "Network Programming",
+                "Fault-Tolerant Systems",
+                "Concurrent Programming"
+            ],
+            "programming_languages": [
+                "Python"
+            ],
+            "description": "The distributed FTP system is designed to allow secure file transfers between nodes in a network. It is built to be resilient and scalable, capable of handling multiple simultaneous transfer requests without compromising performance.",
+            "id": "ftp",
+            "github_repo": null
+        },
+        {
+            "title": "Information Retrieval System",
+            "keywords": [
+                "Information Retrieval System",
+                "documents retrieval",
+                "Data structure Trie",
+                "Vector model",
+                "Vaswani model",
+                "Latent semantic model",
+                "advanced techniques",
+                "precision",
+                "efficiency",
+                "text documents",
+                "similarity calculations",
+                "distance measures",
+                "cosine measures",
+                "semantic features",
+                "synonymy",
+                "polysemy",
+                "word relationships",
+                "contextual understanding",
+                "indexing",
+                "document grouping",
+                "search patterns",
+                "scalable system",
+                "large volumes of data"
+            ],
+            "skills": [
+                "IRS Implementation",
+                "Advanced Data Structures",
+                "Natural Language Processing Techniques"
+            ],
+            "programming_languages": [
+                "Python"
+            ],
+            "description": "The IRS employs a vector-based approach to represent documents and queries in a multidimensional space. This allows for efficient similarity calculations using distance or cosine measures. Latent Semantic Analysis (LSA) is utilized to extract semantic features, addressing challenges like synonymy and polysemy. The system also incorporates Vaswani attention to capture complex word relationships, improving overall accuracy by considering broader contexts. A Trie structure is implemented for indexing and grouping documents, enabling near-instantaneous retrieval based on specific search patterns. This combination of techniques results in a robust and scalable information retrieval system capable of handling large volumes of data effectively.",
+            "id": "irs",
+            "github_repo": null
+        },
+        {
+            "title": "Building Roads Problem",
+            "keywords": [
+                "weighted graph",
+                "maximization problem",
+                "connectivity constraint",
+                "graph representation",
+                "edge selection criteria",
+                "vertex inclusion logic",
+                "optimization strategy",
+                "greedy algorithm",
+                "computational complexity",
+                "network design",
+                "transportation systems",
+                "resource allocation",
+                "DFS",
+                "BFS",
+                "graph traversal",
+                "efficient graph operations"
+            ],
+            "skills": [
+                "Algorithms Analysis",
+                "Computational Complexity Analysis",
+                "Graph Theory",
+                "Greedy Algorithm Design"
+            ],
+            "programming_languages": [
+                "Python"
+            ],
+            "description": "This project involves developing a solution to the 'Building Roads' problem, which has applications in network design, transportation systems, and resource allocation. The goal is to maximize the total weight of selected edges while ensuring that all vertices connected by these edges are included in the solution. Key aspects include graph representation, edge selection criteria, vertex inclusion logic, and optimization strategy using a greedy algorithm.",
+            "id": "tito",
+            "github_repo": null
+        },
+        {
+            "title": "Little Archemy Project",
+            "keywords": [
+                "Telegram bot",
+                "Django backend",
+                "applied mathematics",
+                "interactive mathematical elements generation",
+                "text-based user interface",
+                "virtual alchemical processes",
+                "element combination",
+                "transmutation",
+                "Python",
+                "Django Framework",
+                "Telegram Bot API",
+                "user sessions",
+                "incoming requests",
+                "natural language processing",
+                "rule-based system",
+                "educational platform",
+                "interactive learning experiences",
+                "creative thinking",
+                "problem-solving skills"
+            ],
+            "skills": [
+                "Django Web Development",
+                "Telegram Bot Integration",
+                "Applied Mathematics Concepts",
+                "Text-Based Interaction Design"
+            ],
+            "programming_languages": [
+                "Python"
+            ],
+            "description": "Little Archemy is a novel project that brings together web development, bot technology, and mathematical concepts to create an engaging and educational platform. It utilizes Django for backend development, integrates a Telegram bot for user interaction, and simulates the creation of mathematical elements through virtual alchemical processes.",
+            "id": "littleArchemy",
+            "github_repo": null
+        },
+        {
+            "title": "Yugi Oh Backend Application",
+            "keywords": [
+                "Backend",
+                "Database",
+                "CRUD",
+                "API Rest",
+                "Django",
+                "Python",
+                "Data Management",
+                "RESTful API",
+                "Data Validation",
+                "Performance Optimization",
+                "Authentication",
+                "Authorization",
+                "Data Integrity",
+                "Caching",
+                "Normalization",
+                "Indexing",
+                "Error Handling",
+                "Logging",
+                "ORM"
+            ],
+            "skills": [
+                "Backend Development",
+                "Database Design",
+                "RESTful API Creation",
+                "CRUD Operations Implementation"
+            ],
+            "programming_languages": [
+                "Python"
+            ],
+            "description": "This project focuses on creating a comprehensive backend application for managing Yu-Gi-Oh related data. It utilizes Django to build a robust solution for storing and manipulating information about players, cards, matches, and tournaments. Key components include designing a relational database schema, implementing CRUD operations, developing RESTful API endpoints, ensuring data validation, and optimizing performance.",
+            "id": "yugiOhBackend",
+            "github_repo": null
         }
     ]
 }
