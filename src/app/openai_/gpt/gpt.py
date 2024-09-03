@@ -1,9 +1,7 @@
-from src.config.config import ConfigGPT
+from src.config.config import ConfigGPT, RetrievalConfig
 from src.config.prompts import (
-    basic_info,
-    identifique_query,
-    irs_prompt,
-    select_fields_from_query,
+    ConversationPrompts,
+    RetrievalPrompts,
     GenerativePrompts,
 )
 from openai import OpenAI, AsyncOpenAI
@@ -26,7 +24,8 @@ class GPT:
     ):
         self.client = OpenAI(api_key=ConfigGPT.OPENAI_API_KEY)
         self.asyncclient = AsyncOpenAI(api_key=ConfigGPT.OPENAI_API_KEY)
-        self.user_data = UserData(user)
+        if user is not None:
+            self.user_data = UserData(user)
         self.model = model
         self.current_price = 0
 
@@ -77,31 +76,6 @@ class GPT:
         # return message
         return json.loads(message) if json_format else message
 
-    def select_fields_from_query(self, history):
-        system_message = select_fields_from_query(self.user_data.get_fields())
-        return self.completion(history, system_message, True)["fields"]
-
-    def identifique_query(self, history):
-        system_message = identifique_query()
-        return self.completion(history, system_message, True)
-
-    def conversation(self, history, fields, projects=False):
-        info = self.user_data.get_info_from_fields(fields)
-        # if projects:
-        #     info = {
-        #         key: value
-        #         for key, value in zip(info.keys(), info.values())
-        #         if key in ConfigGPT.STRONG_FIELDS
-        #     }
-        #     info["projects"] = projects
-
-        system_message = basic_info(info, projects)
-        return self.completion(history, system_message, json_format=projects)
-
-    def end_irs(self, projects, history):
-        system_message = irs_prompt(projects)
-        return self.completion(history, system_message, True)
-
     def reload_price(self):
         self.current_price = 0
 
@@ -127,7 +101,53 @@ class GPT:
         return price
 
 
-class InfoGeneration(GPT):
+class GPTChat(GPT):
+    def __init__(self, user, model=ConfigGPT.DEFAULT_MODEL_NAME):
+        super().__init__(user, model)
+
+    def select_fields_from_query(self, history):
+        system_message = ConversationPrompts.select_fields_from_query(
+            self.user_data.get_fields()
+        )
+        return self.completion(history, system_message, True)["fields"]
+
+    def identifique_query(self, history):
+        system_message = ConversationPrompts.identifique_query()
+        return self.completion(history, system_message, True)
+
+    def conversation(self, history, fields, projects=False, temperature=0.2):
+        info = self.user_data.get_info_from_fields(fields)
+        if projects:
+            info["projects"] = projects
+        else:
+            info.pop("projects", None)
+
+        system_message = ConversationPrompts.basic_info(info, projects)
+        return self.completion(
+            history, system_message, json_format=projects, temperature=temperature
+        )
+
+
+class GPTRetrieval(GPT):
+    def __init__(self, model=ConfigGPT.DEFAULT_MODEL_NAME):
+        super().__init__(user=None, model=model)
+
+    def end_irs(self, projects, history):
+        if not len(projects):
+            return []
+        project_keys = list(projects[0].keys())
+        keys = self.get_keys_from_projetckeys(project_keys)["keys"]
+
+        system_message = RetrievalPrompts.irs_prompt(projects, keys)
+        return self.completion(history, system_message, True)
+
+    def get_keys_from_projetckeys(self, project_keys):
+        system_message = RetrievalPrompts.get_keys()
+        history = [{"role": "user", "content": str(project_keys)}]
+        return self.completion(history, system_message, True)
+
+
+class GPTGeneration(GPT):
     def __init__(self, model=ConfigGPT.DEFAULT_MODEL_NAME):
         super().__init__(info="", model=model)
 

@@ -17,27 +17,17 @@ class ConfigGPT:
 
     OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
-    PROJECTS_KEYS = ["id", "title", "keywords", "skills"]
 
-    WEEK_FIELDS = []
-
-    STRONG_FIELDS = [
-        "name",
-        "bachelor",
-        "university",
-        "study_fields",
-        "languajes",
-        "Knowledge",
-        "programming_languajes",
-        "skills",
-        "about",
-        "interests",
-    ]
+class RetrievalConfig:
+    # Campos usados para filtrar proyectos por la query. Estos campos se matchean con NLP para usar los campos reales de los proyectos
+    PROJECTS_KEYS = ["id", "title", "keywords", "skills", "programing_languages"]
 
 
 class GitHubConfig:
+    # Token de github
     GITHUB_KEY = os.environ.get("GITHUB_KEY")
 
 
 class GenerationConfig:
+    # Campos obligatorios para la generacion de proyectos o trabajos
     work_fields = ["title", "keywords", "skills"]

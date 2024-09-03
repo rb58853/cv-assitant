@@ -1,6 +1,5 @@
-import markdown_to_json
 from github import Github
-from src.app.openai_.gpt.gpt import InfoGeneration
+from src.app.openai_.gpt.gpt import GPTGeneration
 from src.config.config import GitHubConfig
 import logging
 import json
@@ -13,7 +12,7 @@ class GithubAPI:
             if github_key is not None
             else Github(GitHubConfig.GITHUB_KEY)
         )
-        self.gptg = InfoGeneration()
+        self.gptg = GPTGeneration()
         self.user = user
         self.user_repo = f"github.com/{user}/{repo}"
         self.short_repo = f"{user}/{repo}"
