@@ -149,7 +149,7 @@ class GPTRetrieval(GPT):
 
 class GPTGeneration(GPT):
     def __init__(self, model=ConfigGPT.DEFAULT_MODEL_NAME):
-        super().__init__(info="", model=model)
+        super().__init__(user=None, model=model)
 
     async def decode_work(self, work, base_fields):
         system_message = GenerativePrompts.work_info(base_fields)
