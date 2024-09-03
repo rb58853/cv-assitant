@@ -27,12 +27,8 @@ def get_user_data(user):
         if file == f"{user}.json":
             return open_json(path)
 
-    raise Exception("User not found.")
-
 def set_user_data(user, data):
     for file in os.listdir(data_path):
         path = os.path.join(data_path, file)
         if file == f"{user}.json":
             return write_json(path, data)
-
-    raise Exception("User not found.")

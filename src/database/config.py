@@ -1,5 +1,5 @@
 class DataConfig:
-    RamData = False
+    RamData = True #Default = True
     RamIRS = False
     DefaultUser = "rb58853"
     OnlyDefaultUser = False

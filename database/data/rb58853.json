@@ -1,0 +1,207 @@
+{
+    "Information": {
+        "Basic Info": {
+            "name": "Raul Beltran Gomez",
+            "github": "https://github.com/rb58853",
+            "bachelor": "Computer Science",
+            "university": "University of Havana"
+        },
+        "About": {
+            "description": "I am Ra\u00fal, a computer scientist with a solid background in mathematics. My specialty lies in the analysis and design of algorithms, combined with advanced skills in frontend and backend programming, which allows me to work as a full-stack developer. My experience extends to the application of machine learning techniques and artificial intelligence, with my thesis project being in this field. My methodological approach includes the use of agile methodologies such as Scrum and Kanban, which allows me to work efficiently and adaptably. I value the importance of maintaining clean, organized, and well-commented code, following the SOLID principles to ensure the quality, maintainability, and scalability of software."
+        },
+        "Interests": {
+            "description": "My professional interests lean towards number theory, graph theory, and the development of solutions in the field of machine learning and artificial intelligence. I am open to working on projects that require both frontend and backend development, as well as game development, and I am committed to creating optimal solutions."
+        },
+        "Study fields": [
+            "Artificial Intelligence and Machine Learning",
+            "Information Retrieval Systems",
+            "Compilers",
+            "Operating Systems",
+            "Databases and Software",
+            "Engineering",
+            "Distributed Systems",
+            "Networks",
+            "Data Structure Analysis and Algorithms",
+            "Design and Analysis of Algorithms",
+            "Graph Theory",
+            "Number Theory"
+        ],
+        "Languages": {
+            "Spanish": "Native",
+            "English": "A2"
+        },
+        "Knowledge": [
+            "Graph Theory",
+            "Number Theory",
+            "Language Theory",
+            "Dynamic and Greedy Programming",
+            "Combinatorics",
+            "Algebra",
+            "Data Structure Analysis and Algorithms"
+        ]
+    },
+    "ProgrammingLanguages": {
+        "Python": "very high",
+        "C#": "very high",
+        "Javascript": "high",
+        "MIPS": "high",
+        "JupyterNotebook": "high",
+        "Markdown": "high",
+        "CSS": "high",
+        "LaTex": "medium",
+        "Dart": "medium",
+        "HTML": "medium",
+        "C++": "low",
+        "Prolog": "low",
+        "C": "low"
+    },
+    "skills": [
+        {
+            "name": "ReactJs",
+            "level": "high",
+            "info": "I have a good command of the ReactJS framework, having created some projects here such as my portfolio and other websites.",
+            "experience_time": "5 months"
+        },
+        {
+            "name": "Artificial Intelligence",
+            "level": "high",
+            "info": "I have a good command of the field of basic artificial intelligence, focusing more on the use of heuristics and metaheuristics.",
+            "experience_time": "1 year"
+        },
+        {
+            "name": "React Native",
+            "level": "medium",
+            "info": "I have worked on some personal projects with React Native and I handle this tool well since it is very similar to ReactJS.",
+            "experience_time": "1 month"
+        },
+        {
+            "name": "Simulation",
+            "level": "medium",
+            "info": "My main focus in this field is based on intelligent agents and multi-agent systems.",
+            "experience_time": "3 months"
+        },
+        {
+            "name": "Machine Learning",
+            "level": "very high",
+            "info": "I have worked on projects related to this field such as the use of OpenAI's LLMs. I have also applied this knowledge to information retrieval using embeddings. Regarding training and model creation, I have experience with recurrent neural networks, transformers or attention layers, and convolutional networks. The main focus I have used in this skill is on images and natural language.",
+            "experience_time": "2 years"
+        },
+        {
+            "name": ".Net",
+            "level": "medium",
+            "info": "I have used the .net ORM for simple personal projects and I handle the C# language used for this environment very well.",
+            "experience_time": "1 month"
+        },
+        {
+            "name": "Information Retrieval Systems",
+            "level": "very high",
+            "info": "I have worked on projects related to this field combining it with the use of LLM and embeddings. I am familiar with this skill both with the use of generated vectors (like embeddings) and with any type of vector or term-based retrieval. I also know data structures like TRIE perfectly to achieve the lowest time complexity in these types of problems. I am currently working on an OpenSource project in this field.",
+            "experience_time": "3 years"
+        },
+        {
+            "name": "Design and Analysis of Algorithms",
+            "level": "very high",
+            "info": "The design and analysis of algorithms is the basic skill of a computer scientist; we are highly prepared to design and analyze algorithms exhaustively and effectively, achieving the best possible computational complexities for each problem that arises.",
+            "experience_time": "5 years"
+        },
+        {
+            "name": "Compilers",
+            "level": "high"
+        },
+        {
+            "name": "Distributed Systems",
+            "level": "medium"
+        },
+        {
+            "name": "Operating Systems",
+            "level": "medium"
+        },
+        {
+            "name": "Networks",
+            "level": "low"
+        },
+        {
+            "name": "Unity Engine",
+            "level": "high"
+        },
+        {
+            "name": "Django",
+            "level": "medium"
+        },
+        {
+            "name": "Telegram Bot",
+            "level": "medium"
+        },
+        {
+            "name": "Flutter",
+            "level": "medium"
+        }
+    ],
+    "Socials": {
+        "Telegram": "@rb58853",
+        "Github": "******",
+        "Phone": "********"
+    },
+    "projects": [
+        {
+            "title": "Image Retrieval System using Machine Learning",
+            "keywords": [
+                "Embeddings",
+                "Multimodal Embeddings",
+                "Image Retrieval",
+                "Machine Learning",
+                "AI",
+                "Segment Anything Model",
+                "CLIP Model",
+                "Precise Queries",
+                "Image Segmentation",
+                "Positional Information"
+            ],
+            "skills": [
+                "IRS",
+                "ML",
+                "AI"
+            ],
+            "programming_languages": [
+                "Python"
+            ],
+            "description": "In this project, the problem of precise image retrieval is addressed. The work employs a new approach: the application of the Segment Anything (SAM) segmentation models and the Constractive Language-Image Pretraining (CLIP) model for the generation of multimodal embeddings. Special emphasis is placed on image retrieval via precise queries, taking into account the position of image segments that compose the same, processing both text and images. This thesis project focuses on retrieving images using text as input. During indexing, embeddings of the image and its segmentations are created to achieve retrieval based on positional information. The Meta SAM (Segment Anything Model) is used to segment the images, and each segmentation generates a multimodal embedding using the OpenAI CLIP model, which generates embeddings for both images and text. Using all generated embeddings, both for images and the original image segmentation, retrieval is performed by matching text against images.",
+            "id": "IRSImagesCLIP",
+            "github_repo": null
+        },
+        {
+            "title": "Development of Intelligent Navigation Systems in Dynamic Environments",
+            "keywords": [
+                "A*",
+                "Artificial Intelligence",
+                "Intelligent Navigation",
+                "Agent Simulation",
+                "NavMesh",
+                "Pathfinding Algorithms",
+                "Algorithm Optimization",
+                "Metaheuristics",
+                "Perception and Collision Detection",
+                "Spatial Ordering",
+                "Dynamic Environments",
+                "Terrain",
+                "Unity",
+                "C#"
+            ],
+            "skills": [
+                "Development of artificial intelligence algorithms",
+                "Implementation of complex data structures with graphs",
+                "Simulation of intelligent agents",
+                "Optimization of search algorithms (A*, Real-Time A*)",
+                "Implementation of perception techniques, spatial ordering, and collision detection",
+                "Use of metaheuristics for algorithm optimization",
+                "Development of real-time navigation systems"
+            ],
+            "programming_languages": [
+                "C#"
+            ],
+            "description": "This project focuses on creating intelligent navigation systems for agents that interact with each other and are influenced by weather, seasonal, and terrain conditions. The main objective is to develop advanced algorithms to determine and simulate the optimal movements of these agents in complex and dynamically changing environments.",
+            "id": "navMeshAgentAI",
+            "github_repo": "https://github.com/rb58853/NavAgent-AI"
+        }
+    ]
+}
