@@ -57,4 +57,8 @@ async def get_repo_info(
     print(f"repo: {reponame}")
     print(f"token: {token}")
 
+    github = GithubAPI(user=username, repo=reponame, github_key=token)
+    data = github.load_data()
+    save_data(user='rb58853', data=data)
+
     return {"status": "ok"}
