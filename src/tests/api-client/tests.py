@@ -1,5 +1,5 @@
 import os
-
+GITHUB_KEY = os.environ.get("GITHUB_KEY")
 
 def clear_console():
     if os.name == "nt":  # Para Windows
@@ -19,6 +19,8 @@ def chating(user="rb58853"):
     return asyncio.run(client.websocket_chat(user=user))
 
 
-chating("rb58853")
+def load_data(user="rb58853", repo="rb58853", token=GITHUB_KEY):
+    client.load_data(user, repo, token)
 
-client.load_data("rb58853", "rb58853")
+
+print(load_data())

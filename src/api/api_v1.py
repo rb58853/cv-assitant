@@ -1,5 +1,6 @@
 from fastapi.routing import APIRouter
-from fastapi import WebSocket
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi import WebSocket, Depends
 import logging
 import json
 from ..app.chat.chat import Chat
@@ -45,12 +46,15 @@ def reload_user_data(github_user, github_repo, override=False, git_token=None):
     github.save_data(data)
 
 
-@router.post("/data/user/load_from_git")
-def load_user_data_from_git(github_user, github_repo, git_token=None):
-    """
-    Regenera la informacion de un usuario desde github
-    """
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-    github = GithubAPI(user=github_user, repo=github_repo, github_key=git_token)
-    data = github.load_data()
-    save_data(user=github_user, data=data)
+
+@router.get("/data/users/load/{username}/{reponame}")
+async def get_repo_info(
+    username: str, reponame: str, token: str = Depends(oauth2_scheme)
+):
+    print(f"username: {username}")
+    print(f"repo: {reponame}")
+    print(f"token: {token}")
+
+    return {"status": "ok"}
