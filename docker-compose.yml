@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  api:
+    image: assitant:v1.0
+    build:
+      context: .
+      dockerfile: dockerfile
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./database/data:/app/database/data
