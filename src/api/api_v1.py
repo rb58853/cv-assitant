@@ -25,7 +25,10 @@ async def open_chat_ws(websocket: WebSocket):
         while True:
             query = await websocket.receive_text()
             response = await chat.send_query(query)
+            #TODO esto es solo temporal, despues se debe estandarizar el response
             await websocket.send_text(json.dumps(response))
+            if 'state' in response:
+                raise Exception (response['message'])
     except Exception as e:
         logging.error(f"Connection with client closed ({e})")
 
