@@ -2,7 +2,7 @@
 FROM python:3.11.2
 
 # Set working directory
-WORKDIR /app
+WORKDIR /
 
 # Copy all files and directories
 COPY . .
@@ -15,9 +15,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # ENV OPENAI_API_KEY=$OPENAI_API_KEY
 
 # Expose port
-EXPOSE 8080
+EXPOSE 8000
 
 # Run the app
-CMD ["uvicorn", "src.app.api.api:app", "--host", "0.0.0.0", "--port", "8080", "--ws-ping-interval", "0", "--ws-ping-timeout", "180", "--workers", "4"]
+CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "8000", "--ws-ping-interval", "0", "--ws-ping-timeout", "180", "--workers", "4"]
 
 

@@ -23,4 +23,5 @@ def load_data(user="rb58853", repo="rb58853", token=GITHUB_KEY):
     return client.load_data(user, repo, token)
 
 
-print(load_data())
+chating()
+# print(load_data())

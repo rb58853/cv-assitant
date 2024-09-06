@@ -12,6 +12,11 @@ import asyncio
 router = APIRouter(prefix="/api/v1", tags=["Api v1"])
 
 
+@router.get("/healt")
+async def healt():
+    return {"status": "healtly"}
+
+
 @router.websocket("/open_chat")
 async def open_chat_ws(websocket: WebSocket):
     await websocket.accept()
@@ -25,10 +30,10 @@ async def open_chat_ws(websocket: WebSocket):
         while True:
             query = await websocket.receive_text()
             response = await chat.send_query(query)
-            #TODO esto es solo temporal, despues se debe estandarizar el response
+            # TODO esto es solo temporal, despues se debe estandarizar el response
             await websocket.send_text(json.dumps(response))
-            if 'state' in response:
-                raise Exception (response['message'])
+            if "state" in response:
+                raise Exception(response["message"])
     except Exception as e:
         logging.error(f"Connection with client closed ({e})")
 
@@ -62,6 +67,6 @@ async def get_repo_info(
 
     github = GithubAPI(user=username, repo=reponame, github_key=token)
     data = github.load_data()
-    save_data(user='rb58853', data=data)
+    save_data(user="rb58853", data=data)
 
     return {"status": "ok"}

@@ -49,7 +49,7 @@ class APIClient:
 
 
     async def websocket_chat(self, user):
-        uri = f"{self.ws_url}/api/v1/open_chat"
+        uri = f"{self.ws_url}/open_chat"
         config = user
 
         async with websockets.connect(uri, ping_interval=None) as websocket:
