@@ -10,10 +10,6 @@ COPY . .
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Configurar las variables de entorno
-# ARG OPENAI_API_KEY
-# ENV OPENAI_API_KEY=$OPENAI_API_KEY
-
 # Expose port
 EXPOSE 8000
 
