@@ -30,6 +30,7 @@ async def open_chat_ws(websocket: WebSocket):
         while True:
             query = await websocket.receive_text()
             response = await chat.send_query(query)
+            response['response']
             # TODO esto es solo temporal, despues se debe estandarizar el response
             await websocket.send_text(json.dumps(response))
             if "state" in response:

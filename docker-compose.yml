@@ -9,4 +9,4 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./database/data:/database/data
+      - ./database/data:/assistant/database/data
