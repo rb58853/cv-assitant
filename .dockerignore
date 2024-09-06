@@ -1,2 +1,8 @@
 #exclude data while build container
 database/data/
+
+#exclude tests
+tests/
+
+#exclude developed files
+develop_temp_chat.py

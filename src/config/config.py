@@ -26,6 +26,7 @@ class RetrievalConfig:
 class GitHubConfig:
     # Token de github
     GITHUB_KEY = os.environ.get("GITHUB_KEY")
+    GITHUB_USER = os.environ.get("GITHUB_USER")
 
 
 class GenerationConfig:

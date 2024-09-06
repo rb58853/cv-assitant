@@ -4,6 +4,7 @@ import websockets
 import json
 from requests.exceptions import RequestException
 
+
 class APIClient:
     def __init__(
         self,
@@ -16,24 +17,12 @@ class APIClient:
         self.port = port
 
     def load_data(self, username, reponame, token):
-        """
-        Realiza una llamada al endpoint de GitHub y devuelve la información del repositorio.
-
-        Args:
-            base_url (str): URL base del servidor FastAPI
-            username (str): Nombre de usuario del propietario del repositorio
-            reponame (str): Nombre del repositorio
-            token (str): Token de acceso de GitHub
-
-        Returns:
-            dict: Información del repositorio si la llamada es exitosa
-        """
         url = f"{self.http_url}/data/users/load/{username}/{reponame}"
 
         # Configurar los encabezados con el token de GitHub
         headers = {
             "Authorization": f"Bearer {token}",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
 
         try:
@@ -46,7 +35,6 @@ class APIClient:
         except RequestException as e:
             print(f"Error en la solicitud: {e}")
             return None
-
 
     async def websocket_chat(self, user):
         uri = f"{self.ws_url}/open_chat"

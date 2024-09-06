@@ -8,6 +8,6 @@ Esto es un bot que sirve de asistente para poner en tu CV por ejemplo
 
 ## Skills
 - Machine Learning
-- Information Retrieval System
+- NLP
 - Docker
 

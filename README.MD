@@ -6,12 +6,6 @@ Bienvenido al repositorio del Asistente Personalizado Bot, un proyecto de códig
 
 Nuestro bot utiliza inteligencia artificial avanzada para aprender sobre ti, almacenando información relevante para poder ofrecerte respuestas personalizadas. Actúa como tú, respondiendo a consultas y participando en conversaciones basadas en tu estilo de comunicación, conocimientos y experiencias. Ya sea que necesites ayuda con tareas cotidianas, quieras saber sobre eventos locales o simplemente busques compañía durante una conversación, nuestro bot está aquí para ayudarte, haciéndolo de manera que parezca que estás interactuando directamente con alguien que conoce bien tus gustos y antecedentes.
 
-<!-- ### Características destacadas:
-
-- **Interacción Natural**: Diseñado para interactuar de manera natural y fluida, haciéndote sentir como si estuvieras hablando con un amigo o familiar que conoce tus peculiaridades.
-- **Accesibilidad Universal**: Integrado con múltiples plataformas, lo que permite acceder a él desde donde prefieras, ya sea a través de un chatbot en línea, una aplicación móvil, o incluso integrado en otras aplicaciones.
-- **Actualizaciones Constantes**: Nuestro equipo de desarrolladores trabaja constantemente para mejorar y expandir las capacidades del bot, asegurando que siempre estés recibiendo la mejor experiencia posible. -->
-
 ## Código Abierto
 
 Este proyecto es completamente de código abierto, lo que significa que puedes explorar, modificar y distribuir el código según los términos de la licencia. Participar en el desarrollo de este proyecto es una excelente forma de contribuir a la comunidad de desarrollo de software libre.
