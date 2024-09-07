@@ -64,8 +64,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 async def get_repo_info(
     username: str, reponame: str, token: str = Depends(oauth2_scheme)
 ):
-    print(f"username: {username}")
-    print(f"repo: {reponame}")
+e    print(f"repo: {reponame}")
     print(f"token: {token}")
 
     github = GithubAPI(user=username, repo=reponame, github_key=token)
@@ -73,3 +72,11 @@ async def get_repo_info(
     save_data(user="rb58853", data=data)
 
     return {"status": "ok"}
+
+
+@router.get("/data/cryptography/reload-key")
+async def get_repo_info(key: str = Depends(oauth2_scheme)):
+    """
+    Esto es para el caso que cambies de api_key en criptografia
+    """
+    return {"status": "not impemented"}

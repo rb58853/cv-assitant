@@ -4,7 +4,6 @@ from src.config.config import GitHubConfig
 import logging
 import json
 
-
 class GithubAPI:
     def __init__(self, user, repo, github_key=GitHubConfig.GITHUB_KEY) -> None:
         self.g = (

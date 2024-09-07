@@ -2,8 +2,10 @@ from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 
 class CustomOpenAPI:
+    def __init__(self):
+        pass
 
-    def call(self, app: FastAPI):
+    def __call__(self, app: FastAPI):
         if app.openapi_schema:
             return app.openapi_schema
         
@@ -17,7 +19,7 @@ class CustomOpenAPI:
         openapi_schema["components"]["securitySchemes"] = {
             "APIKeyHeader": {
                 "type": "apiKey",
-                "name": "X-API-KEY",
+                "name": "API-KEY",
                 "in": "header"
             }
         }
