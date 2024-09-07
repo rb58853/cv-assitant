@@ -1,4 +1,4 @@
-from database.api.api import get_info
+from database.api.api import load_data
 
 def get_user_data(user):
-    return get_info(user)
+    return load_data(user)

@@ -1,30 +1,25 @@
-from database.api.utils import get_user_data, set_user_data
+from database.api.actions import Get, Set
+from ..security.cryptography import decode, encode
 
 
 def save_data(user, data):
     try:
-        set_user_data(user=user, data=data)
+        Set(user).user_data(data=data)
         return True
     except:
         return False
 
 
-def get_info(user):
+def load_data(user):
     try:
-        return get_user_data(user)
+        return Get(user).user_data(user)
     except:
         return None
 
 
-# def get_field_info(user, field_name):
-#     try:
-#         return get_user_data(user)[field_name]
-#     except:
-#         return None
+def set_key(user, key):
+    return Set(user).key(key)
 
 
-# def get_fields_from_user(user):
-#     try:
-#         return get_user_data(user).fields()
-#     except:
-#         return None
+def get_key(user):
+    pass

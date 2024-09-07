@@ -18,13 +18,15 @@ def write_json(path, json_value):
         raise Exception("File not found.")
 
 
-data_path = os.path.join(os.getcwd(), "database/data")
-os.makedirs(data_path, exist_ok=True)
+def write_fields(file_path, fields: dict):
+    """
+    Usar solo para json o diccionarios
+    """
+    with open(file_path, "r+") as file:
+        my_value = json.loads(file.read())
 
-def get_user_data(user):
-    path = os.path.join(data_path, f"{user}.json")
-    return open_json(path)
+    for key in fields:
+        my_value[key] = fields[key]
 
-def set_user_data(user, data):
-    path = os.path.join(data_path, f"{user}.json")
-    return write_json(path, data)
+    with open(file_path, "w") as file:
+        file.write(json.dumps(my_value))
