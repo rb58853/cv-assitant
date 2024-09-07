@@ -9,8 +9,14 @@ The main objective of this project is to develop an advanced virtual assistant t
 - Evaluate compatibility between job positions and the user's skills
 - Learn and continuously improve based on user feedback
 
+## Como funciona
+### Configuracion de Github
+
+### Endpoints
 
 ## Docker
 
 ## OpenSource Code
+
+
 
