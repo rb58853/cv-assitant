@@ -13,7 +13,7 @@ def write_key(new_key):
         crypto_line = False
         for line in lines:
             if line.startswith("CRYPTOGRAPHY_KEY"):
-                new_lines.append(f"CRYPTOGRAPHY_KEY = {new_key}")
+                new_lines.append(f"CRYPTOGRAPHY_KEY = {new_key}\n")
                 crypto_line = True
             else:
                 new_lines.append(line)
