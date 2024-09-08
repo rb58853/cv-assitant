@@ -16,11 +16,11 @@ class APIClient:
         self.ws_url = f"{ws_url}"
         self.port = port
 
-    def load_data(self, username):
+    def load_data(self, username, user_key):
         url = f"{self.http_url}/data/users/load/{username}"
 
         headers = {
-            "API-KEY": f"LA API DEL HEADER",
+            "API-KEY": user_key,
             "Content-Type": "application/json",
         }
 

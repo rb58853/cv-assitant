@@ -71,12 +71,9 @@ async def get_repo_data(username: str):
     reponame = get_user_repo(username)
     token = get_user_token(username)
 
-    print(f"repo: {reponame}")
-    print(f"token: {token}")
-
-    # github = GithubAPI(user=username, repo=reponame, github_key=token)
-    # data = github.load_data()
-    # set_user_data(user="rb58853", data=data)
+    github = GithubAPI(user=username, repo=reponame, github_key=token)
+    data = github.load_data()
+    set_user_data(user=username, data=data)
 
     return {"status": "ok"}
 
@@ -89,6 +86,7 @@ async def reload_cryptokey(key: str = Depends(oauth2_scheme)):
     return {"status": "not impemented"}
 
 
+# TODO Quiza cambiar esto por un post
 @router.get("/data/users/register/{username}/{reponame}")
 async def register_user_endpoint(
     username: str, reponame: str, token: str = Depends(oauth2_scheme)

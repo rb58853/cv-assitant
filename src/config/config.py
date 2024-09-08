@@ -37,9 +37,8 @@ class ConfigServer:
     MASTER_KEY = os.environ.get("MASTER_KEY")
 
     PREX_NON_SECURE_PATHS = [
-        "/",
-        "/health",
-        "/docs",
-        "/openapi.json",
-        "/data/users/register/",
+        "/api/v1/data/users/register/",
+        "/api/v1/health",
+        # "/docs",
+        # "/openapi.json",
     ]
