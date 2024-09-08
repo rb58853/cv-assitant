@@ -23,13 +23,23 @@ class RetrievalConfig:
     PROJECTS_KEYS = ["id", "title", "keywords", "skills", "programing_languages"]
 
 
-class GitHubConfig:
-    # Token de github
-    GITHUB_KEY = os.environ.get("GITHUB_KEY")
-    GITHUB_USER = os.environ.get("GITHUB_USER")
-    GITHUB_REPO = os.environ.get("GITHUB_REPO")
-
-
 class GenerationConfig:
     # Campos obligatorios para la generacion de proyectos o trabajos
     work_fields = ["title", "keywords", "skills"]
+
+
+class ConfigServer:
+    LOCAL_HOST = "localhost"
+    LOCAL_PORT = 8000
+    LOCAL_TIMEOUT = 60
+    LOCAL_SERVER_ROUTE = "app.api.server:app"
+
+    MASTER_KEY = os.environ.get("MASTER_KEY")
+
+    PREX_NON_SECURE_PATHS = [
+        "/",
+        "/health",
+        "/docs",
+        "/openapi.json",
+        "/data/users/register/",
+    ]

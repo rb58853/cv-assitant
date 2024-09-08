@@ -8,7 +8,6 @@ from src.services.github_service.github_ import GithubAPI
 from src.database.api_client import (
     set_user_data,
     register_user,
-    get_user_key,
     get_user_token,
     get_user_repo,
 )
@@ -75,15 +74,15 @@ async def get_repo_data(username: str):
     print(f"repo: {reponame}")
     print(f"token: {token}")
 
-    github = GithubAPI(user=username, repo=reponame, github_key=token)
-    data = github.load_data()
-    set_user_data(user="rb58853", data=data)
+    # github = GithubAPI(user=username, repo=reponame, github_key=token)
+    # data = github.load_data()
+    # set_user_data(user="rb58853", data=data)
 
     return {"status": "ok"}
 
 
 @router.get("/data/cryptography/reload-key")
-async def get_repo_info(key: str = Depends(oauth2_scheme)):
+async def reload_cryptokey(key: str = Depends(oauth2_scheme)):
     """
     Esto es para el caso que cambies de api_key en criptografia
     """

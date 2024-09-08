@@ -20,6 +20,7 @@ class APIClient:
         url = f"{self.http_url}/data/users/load/{username}"
 
         headers = {
+            "API-KEY": f"LA API DEL HEADER",
             "Content-Type": "application/json",
         }
 

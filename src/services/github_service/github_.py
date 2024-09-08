@@ -1,16 +1,12 @@
 from github import Github
 from src.app.openai_.gpt.gpt import GPTGeneration
-from src.config.config import GitHubConfig
 import logging
 import json
 
+
 class GithubAPI:
-    def __init__(self, user, repo, github_key=GitHubConfig.GITHUB_KEY) -> None:
-        self.g = (
-            Github(github_key)
-            if github_key is not None
-            else Github(GitHubConfig.GITHUB_KEY)
-        )
+    def __init__(self, user, repo, github_key) -> None:
+        self.g = Github(github_key)
         self.gptg = GPTGeneration()
         self.user = user
         self.user_repo = f"github.com/{user}/{repo}"
