@@ -4,12 +4,13 @@ from fastapi import WebSocket, Depends
 import logging
 import json
 from ..app.chat.chat import Chat
-from src.app.github_service.github_ import GithubAPI, GitHubConfig
-from database.api.api import save_data
+from src.services.github_service.github_ import GithubAPI
+from src.database.api_client import set_user_data
 import asyncio
 
 
 router = APIRouter(prefix="/api/v1", tags=["Api v1"])
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 @router.get("/healt")
@@ -39,15 +40,18 @@ async def open_chat_ws(websocket: WebSocket):
         logging.error(f"Connection with client closed ({e})")
 
 
-@router.get("/data/user/reload/{username}/{reponame}")
-async def get_repo_info(
-    username: str, reponame: str, token: str = Depends(oauth2_scheme)
+@router.get("/data/user/generate/{username}/{reponame}")
+async def reaload_repo_data(
+    username: str,
+    reponame: str,
+    token: str = Depends(oauth2_scheme),
+    overwrite=False,
 ):
     """
     Regenera la informacion de un usuario desde github
     """
 
-    github = GithubAPI(user=username, repo=reponame, github_key=git_token)
+    github = GithubAPI(user=username, repo=reponame, github_key=token)
     projects = asyncio.run(github.get_user_projects())
     info = asyncio.run(github.get_user_info())
 
@@ -57,19 +61,16 @@ async def get_repo_info(
     github.save_data(data)
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-
 @router.get("/data/users/load/{username}/{reponame}")
-async def get_repo_info(
+async def get_repo_data(
     username: str, reponame: str, token: str = Depends(oauth2_scheme)
 ):
-e    print(f"repo: {reponame}")
+    print(f"repo: {reponame}")
     print(f"token: {token}")
 
     github = GithubAPI(user=username, repo=reponame, github_key=token)
     data = github.load_data()
-    save_data(user="rb58853", data=data)
+    set_user_data(user="rb58853", data=data)
 
     return {"status": "ok"}
 

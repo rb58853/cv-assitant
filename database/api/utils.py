@@ -22,8 +22,14 @@ def write_fields(file_path, fields: dict):
     """
     Usar solo para json o diccionarios
     """
-    with open(file_path, "r+") as file:
-        my_value = json.loads(file.read())
+    if os.path.exists(file_path):
+        with open(file_path, "r") as file:
+            try:
+                my_value = json.loads(file.read())
+            except:
+                my_value = {}
+    else:
+        my_value = {}
 
     for key in fields:
         my_value[key] = fields[key]

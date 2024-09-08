@@ -1,5 +1,4 @@
 from database.api.actions import Get, Set
-from ..security.cryptography import decode, encode
 
 
 def save_data(user, data):
@@ -22,4 +21,9 @@ def set_key(user, key):
 
 
 def get_key(user):
-    pass
+    return Get(user).key()
+
+
+def register(user, repo, token):
+    Set(user).register(repo, token)
+    return get_key(user)

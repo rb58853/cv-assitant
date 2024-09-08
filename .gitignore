@@ -154,4 +154,5 @@ cython_debug/
 
 #database
 database/data/*.json
+database/data/
 # database/data/rb58853.json
