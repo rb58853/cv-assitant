@@ -5,7 +5,13 @@ import logging
 import json
 from ..app.chat.chat import Chat
 from src.services.github_service.github_ import GithubAPI
-from src.database.api_client import set_user_data
+from src.database.api_client import (
+    set_user_data,
+    register_user,
+    get_user_key,
+    get_user_token,
+    get_user_repo,
+)
 import asyncio
 
 
@@ -61,10 +67,11 @@ async def reaload_repo_data(
     github.save_data(data)
 
 
-@router.get("/data/users/load/{username}/{reponame}")
-async def get_repo_data(
-    username: str, reponame: str, token: str = Depends(oauth2_scheme)
-):
+@router.get("/data/users/load/{username}")
+async def get_repo_data(username: str):
+    reponame = get_user_repo(username)
+    token = get_user_token(username)
+
     print(f"repo: {reponame}")
     print(f"token: {token}")
 
@@ -81,3 +88,12 @@ async def get_repo_info(key: str = Depends(oauth2_scheme)):
     Esto es para el caso que cambies de api_key en criptografia
     """
     return {"status": "not impemented"}
+
+
+@router.get("/data/users/register/{username}/{reponame}")
+async def register_user_endpoint(
+    username: str, reponame: str, token: str = Depends(oauth2_scheme)
+):
+    key = register_user(username, reponame, token)
+
+    return {"status": "ok", "data": {"key": key}}

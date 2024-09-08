@@ -17,7 +17,6 @@ class Set:
 
         if not os.path.exists(dir_path):
             os.makedirs(dir_path, exist_ok=True)
-        os.makedirs(path, exist_ok=True)
 
         return write_json(path, data)
 
@@ -61,6 +60,13 @@ class Get:
         # self.key = self.key()
         # self.repo = self.repo()
         # self.token = self.token()
+
+    # def config(self):
+    #     path = os.path.join(data_path, f"{self.user}/config.json")
+    #     try:
+    #         config = open_json(path)
+    #     except:
+    #         return None
 
     def user_data(self):
         path = os.path.join(data_path, f"{self.user}/data.json")

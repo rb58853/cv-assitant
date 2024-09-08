@@ -24,6 +24,14 @@ def get_key(user):
     return Get(user).key()
 
 
+def get_token(user):
+    return Get(user).token()
+
+
+def get_repo(user):
+    return Get(user).repo()
+
+
 def register(user, repo, token):
     Set(user).register(repo, token)
     return get_key(user)

@@ -1,12 +1,12 @@
-from client import APIClient
-from env import GITHUB_USER, GITHUB_REPO
+from api_client.client import APIClient
+from env import GITHUB_USER
 
 
 client = APIClient()
 
 
-def load_data(user=GITHUB_USER, repo=USER_REPO, token=GITHUB_KEY):
-    return client.load_data(user, repo, token)
+def load_data(user=GITHUB_USER):
+    return client.load_data(user)
 
 
 print(load_data())

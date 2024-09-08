@@ -16,12 +16,29 @@ class APIClient:
         self.ws_url = f"{ws_url}"
         self.port = port
 
-    def load_data(self, username, reponame, token):
-        url = f"{self.http_url}/data/users/load/{username}/{reponame}"
+    def load_data(self, username):
+        url = f"{self.http_url}/data/users/load/{username}"
 
-        # Configurar los encabezados con el token de GitHub
         headers = {
-            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        }
+
+        try:
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+
+            # Si la respuesta es exitosa, devolvemos los datos del repositorio
+            return response.json()
+
+        except RequestException as e:
+            print(f"Error en la solicitud: {e}")
+            return None
+
+    def register(self, username, git_repo, git_token):
+        url = f"{self.http_url}/data/users/register/{username}/{git_repo}"
+
+        headers = {
+            "Authorization": f"Bearer {git_token}",
             "Content-Type": "application/json",
         }
 
