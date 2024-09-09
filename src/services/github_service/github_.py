@@ -1,5 +1,5 @@
 from github import Github
-from src.app.openai_.gpt.gpt import GPTGeneration
+from src.services.openai_.gpt.gpt import GPTGeneration
 import logging
 import json
 

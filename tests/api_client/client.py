@@ -17,7 +17,7 @@ class APIClient:
         self.port = port
 
     def load_data(self, username, user_key):
-        url = f"{self.http_url}/data/users/load/{username}"
+        url = f"{self.http_url}/data/user/load/{username}"
 
         headers = {
             "API-KEY": user_key,

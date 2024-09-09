@@ -1,6 +1,7 @@
 import os
 from .utils import write_json, open_json, write_fields
-from ..security.cryptography import decode, encode
+from ..security.cryptography_actions import decode, encode
+from ..security.generate_key import generate_user_key
 
 data_path = os.path.join(os.getcwd(), "database/data")
 if not os.path.exists(data_path):
@@ -42,7 +43,8 @@ class Set:
         return self.config_value(key="repo", value=repo)
 
     def register(self, repo, token):
-        key = encode("12345")
+        base_key = generate_user_key()
+        key = encode(base_key)
         token = encode(token)
 
         dir_path = os.path.join(data_path, f"{self.user}")
@@ -51,7 +53,8 @@ class Set:
         if not os.path.exists(dir_path):
             os.makedirs(dir_path, exist_ok=True)
 
-        return write_fields(path, {"key": key, "repo": repo, "token": token})
+        write_fields(path, {"key": key, "repo": repo, "token": token})
+        return base_key
 
 
 class Get:

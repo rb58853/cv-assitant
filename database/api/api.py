@@ -33,5 +33,4 @@ def get_repo(user):
 
 
 def register(user, repo, token):
-    Set(user).register(repo, token)
-    return get_key(user)
+    return Set(user).register(repo, token)

@@ -12,3 +12,4 @@ app.openapi = lambda: CustomOpenAPI(app)()
 app.add_middleware(APIKeyMiddleware)
 
 app.include_router(router_v1)
+

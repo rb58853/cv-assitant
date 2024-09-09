@@ -45,8 +45,8 @@ async def open_chat_ws(websocket: WebSocket):
         logging.error(f"Connection with client closed ({e})")
 
 
-@router.get("/data/user/generate/{username}/{reponame}")
-async def reaload_repo_data(
+@router.get("/data/user/update/{username}")
+async def update_repo_data(
     username: str,
     reponame: str,
     token: str = Depends(oauth2_scheme),
@@ -66,7 +66,7 @@ async def reaload_repo_data(
     github.save_data(data)
 
 
-@router.get("/data/users/load/{username}")
+@router.get("/data/user/load/{username}")
 async def get_repo_data(username: str):
     reponame = get_user_repo(username)
     token = get_user_token(username)
