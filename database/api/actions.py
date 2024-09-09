@@ -70,6 +70,9 @@ class Get:
     #         config = open_json(path)
     #     except:
     #         return None
+    def exist(self):
+        path = os.path.join(data_path, f"{self.user}/config.json")
+        return os.path.exists(path)
 
     def user_data(self):
         path = os.path.join(data_path, f"{self.user}/data.json")
@@ -84,10 +87,12 @@ class Get:
             return None
 
     def key(self):
-        return decode(self.config_value(key="key"))
+        key = self.config_value(key="key")
+        return decode(key) if key is not None else None
 
     def token(self):
-        return decode(self.config_value(key="token"))
+        token = self.config_value(key="token")
+        return decode(token) if token is not None else None
 
     def repo(self):
         return self.config_value(key="repo")

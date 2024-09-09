@@ -29,7 +29,7 @@ class GenerationConfig:
 
 
 class ConfigServer:
-    # MASTER_KEY = os.environ.get("MASTER_KEY")
+    MASTER_KEY = os.environ.get("MASTER_KEY")
 
     PREX_NON_SECURE_PATHS = [
         "/api/v1/health",

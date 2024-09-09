@@ -11,7 +11,7 @@ def save_data(user, data):
 
 def load_data(user):
     try:
-        return Get(user).user_data(user)
+        return Get(user).user_data()
     except:
         return None
 

@@ -74,31 +74,29 @@ class APIClient:
             print(f"Error en la solicitud: {e}")
             return None
 
-    async def websocket_chat(self, user):
-        uri = f"{self.ws_url}/open_chat"
-        config = user
-
-        async with websockets.connect(uri, ping_interval=None) as websocket:
-            # Enviar un mensaje al servidor
-            await websocket.send(config)
-            # Esperar y recibir un mensaje del servidor
-            response = await websocket.recv()
-            print(f"Respuesta del servidor: {response}")
-
-            while True:
-                try:
-                    query = input("> ")
-                    await websocket.send(query)
-                    # print(f"> {query}")
-
-                    response = await asyncio.wait_for(websocket.recv(), timeout=11120)
-                    # response = await websocket.recv()
+    async def websocket_chat(self, user, api_key):
+        uri = f"{self.ws_url}/open_chat/{user}"
+        async with websockets.connect(
+            uri, extra_headers={"API-KEY": api_key}
+        ) as websocket:
+            try:
+                response = await websocket.recv()
+                print(f"status: {response}")
+                while True:
                     try:
-                        response = json.loads(response)
-                        print(f"< {response['response']}")
-                    except:
-                        print(f"< {response}")
+                        query = input("> ")
+                        await websocket.send(query)
+                        # print(f"> {query}")
 
-                except Exception as e:
-                    print(e)
-                    break
+                        response = await websocket.recv()
+                        try:
+                            response = json.loads(response)
+                            print(f"< {response['response']}")
+                        except:
+                            print(f"< {response}")
+
+                    except Exception as e:
+                        print(e)
+                        break
+            except:
+                pass

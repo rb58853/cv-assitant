@@ -12,6 +12,7 @@ from src.database.api_client import (
     get_user_repo,
 )
 import asyncio
+from .auth.middleware import websocket_middleware
 
 
 router = APIRouter(prefix="/api/v1", tags=["Api v1"])
@@ -23,22 +24,21 @@ async def healt():
     return {"status": "healtly"}
 
 
-@router.websocket("/open_chat")
-async def open_chat_ws(websocket: WebSocket):
+@router.websocket("/open_chat/{username}")
+@websocket_middleware
+async def open_chat_ws(websocket: WebSocket, username):
     await websocket.accept()
-    logging.info(f"Client Connected to Websocket: {websocket.client.host}")
-    user = await websocket.receive_text()
-    print(f"user: {user}")
-    chat = Chat()
-    await websocket.send_text("connected")
-
+    logging.info(
+        f"Client Connected to Websocket: --host: {websocket.client.host} --user:{username}"
+    )
+    chat = Chat(username)
+    await websocket.send_json({"status": "connected", "detail": "authorized api-key"})
     try:
         while True:
             query = await websocket.receive_text()
             response = await chat.send_query(query)
-            response["response"]
             # TODO esto es solo temporal, despues se debe estandarizar el response
-            await websocket.send_text(json.dumps(response))
+            await websocket.send_json(response)
             if "state" in response:
                 raise Exception(response["message"])
     except Exception as e:
