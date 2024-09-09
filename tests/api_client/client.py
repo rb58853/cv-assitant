@@ -35,6 +35,25 @@ class APIClient:
             print(f"Error en la solicitud: {e}")
             return None
 
+    def update_data(self, username, user_key):
+        url = f"{self.http_url}/data/user/update/{username}"
+
+        headers = {
+            "API-KEY": user_key,
+            "Content-Type": "application/json",
+        }
+
+        try:
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+
+            # Si la respuesta es exitosa, devolvemos los datos del repositorio
+            return response.json()
+
+        except RequestException as e:
+            print(f"Error en la solicitud: {e}")
+            return None
+
     def register(self, username, git_repo, git_token, master_key):
         url = f"{self.http_url}/data/users/register/{username}/{git_repo}"
 

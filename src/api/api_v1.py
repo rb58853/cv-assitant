@@ -48,22 +48,23 @@ async def open_chat_ws(websocket: WebSocket):
 @router.get("/data/user/update/{username}")
 async def update_repo_data(
     username: str,
-    reponame: str,
-    token: str = Depends(oauth2_scheme),
     overwrite=False,
 ):
     """
     Regenera la informacion de un usuario desde github
     """
+    reponame = get_user_repo(username)
+    token = get_user_token(username)
 
     github = GithubAPI(user=username, repo=reponame, github_key=token)
-    projects = asyncio.run(github.get_user_projects())
-    info = asyncio.run(github.get_user_info())
+    projects = await github.get_user_projects()
+    info = await github.get_user_info()
 
     data = info
     data["projects"] = projects
 
     github.save_data(data)
+    return {"status": "ok", "data": data}
 
 
 @router.get("/data/user/load/{username}")
