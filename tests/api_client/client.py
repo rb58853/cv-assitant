@@ -76,9 +76,7 @@ class APIClient:
 
     async def websocket_chat(self, user, api_key):
         uri = f"{self.ws_url}/open_chat/{user}"
-        async with websockets.connect(
-            uri, extra_headers={"API-KEY": api_key}
-        ) as websocket:
+        async with websockets.connect(uri, extra_headers={"API-KEY": api_key}) as websocket:
             try:
                 response = await websocket.recv()
                 print(f"status: {response}")
@@ -88,7 +86,7 @@ class APIClient:
                         await websocket.send(query)
                         # print(f"> {query}")
 
-                        response = await websocket.recv()
+                        response = await asyncio.wait_for(websocket.recv(), timeout=10000)
                         try:
                             response = json.loads(response)
                             print(f"< {response['response']}")
@@ -99,4 +97,4 @@ class APIClient:
                         print(e)
                         break
             except:
-                pass
+                pass                
