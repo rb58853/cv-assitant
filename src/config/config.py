@@ -29,16 +29,14 @@ class GenerationConfig:
 
 
 class ConfigServer:
-    LOCAL_HOST = "localhost"
-    LOCAL_PORT = 8000
-    LOCAL_TIMEOUT = 60
-    LOCAL_SERVER_ROUTE = "app.api.server:app"
-
-    MASTER_KEY = os.environ.get("MASTER_KEY")
+    # MASTER_KEY = os.environ.get("MASTER_KEY")
 
     PREX_NON_SECURE_PATHS = [
-        "/api/v1/data/users/register/",
         "/api/v1/health",
         # "/docs",
         # "/openapi.json",
+    ]
+
+    PREX_MASTER_SECURE_PATHS = [
+        "/api/v1/data/users/register/",
     ]

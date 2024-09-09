@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 
+
 class CustomOpenAPI:
     def __init__(self, app: FastAPI):
         self.app = app
@@ -8,25 +9,26 @@ class CustomOpenAPI:
     def __call__(self):
         if self.app.openapi_schema:
             return self.app.openapi_schema
-        
+
         openapi_schema = get_openapi(
-            title = "FlowyChat API",
-            version = "1.0.0",
-            description = "Custom OpenAPI schema",
-            routes = self.app.routes,
+            title="Assistant API",
+            version="1.0.0",
+            description="Custom OpenAPI schema with api-keys authorization",
+            routes=self.app.routes,
         )
 
         openapi_schema["components"]["securitySchemes"] = {
-            "APIKeyHeader": {
+            "APIKeyHeader": {"type": "apiKey", "name": "API-KEY", "in": "header"},
+            "MasterAPIKeyHeader": {
                 "type": "apiKey",
-                "name": "API-KEY",
-                "in": "header"
-            }
+                "name": "MASTER-API-KEY",
+                "in": "header",
+            },
         }
 
-        for path in openapi_schema['paths'].values():
+        for path in openapi_schema["paths"].values():
             for method in path.values():
-                method["security"] = [{"APIKeyHeader": []}]
-        
+                method["security"] = [{"APIKeyHeader": [], "MasterAPIKeyHeader": []}]
+
         self.app.openapi_schema = openapi_schema
-        return self.app.openapi_schema    
+        return self.app.openapi_schema

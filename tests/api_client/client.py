@@ -35,11 +35,12 @@ class APIClient:
             print(f"Error en la solicitud: {e}")
             return None
 
-    def register(self, username, git_repo, git_token):
+    def register(self, username, git_repo, git_token, master_key):
         url = f"{self.http_url}/data/users/register/{username}/{git_repo}"
 
         headers = {
             "Authorization": f"Bearer {git_token}",
+            "MASTER-API-KEY": master_key,
             "Content-Type": "application/json",
         }
 

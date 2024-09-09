@@ -6,6 +6,8 @@ services:
       dockerfile: dockerfile
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - CRYPTOGRAPHY_KEY=${CRYPTOGRAPHY_KEY}
+      - MASTER_KEY=${MASTER_KEY}
     ports:
       - "8000:8000"
     volumes:

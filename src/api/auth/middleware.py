@@ -9,7 +9,7 @@ from src.config.logger_config import get_logger
 from src.config.config import ConfigServer
 
 from src.database.api_client import get_key
-import requests
+import os
 
 logger = get_logger(__name__)
 
@@ -24,19 +24,26 @@ class APIKeyMiddleware(BaseHTTPMiddleware):
         #     return
 
         if in_non_secure_endpoint(req):
-            logger.info(f"Path {req.url.path} doesnt need authorization")
             return await call_next(req)
 
         params = Params(req)
         username = params.get_param("username")
 
-        if username is None:
-            # no hay username, no hay que autenticar nada
+        if username is None and not in_master_secure_endpoint(req):
+            # no hay username ni hay que usar el master, no hay que autenticar nada
             return await call_next(req)
 
-        api_key = req.headers.get("API-KEY")
+        recived_key = req.headers.get("API-KEY")
+        api_key = get_key(username)
 
-        if not match_key(api_key, username):
+        if in_master_secure_endpoint(req):
+            recived_key = req.headers.get("MASTER-API-KEY")
+            api_key = os.environ.get("MASTER_KEY")
+
+        print(f"recived key: {recived_key}")
+        print(f"api key: {api_key}")
+
+        if not match_key(api_key, recived_key):
             return JSONResponse(
                 content={"detail": "Unauthorized API KEY"},
                 status_code=HTTPStatus.UNAUTHORIZED,
@@ -46,13 +53,22 @@ class APIKeyMiddleware(BaseHTTPMiddleware):
         return response
 
 
-def match_key(key, username):
-    return key == get_key(username)
+def match_key(recived_key, key):
+    return key == recived_key
 
 
 def in_non_secure_endpoint(req):
     for path in ConfigServer.PREX_NON_SECURE_PATHS:
-        return req.url.path.startswith(path)
+        if req.url.path.startswith(path):
+            return True
+    return False
+
+
+def in_master_secure_endpoint(req):
+    for path in ConfigServer.PREX_MASTER_SECURE_PATHS:
+        if req.url.path.startswith(path):
+            return True
+    return False
 
 
 class Params:
