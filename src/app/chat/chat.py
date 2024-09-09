@@ -1,11 +1,10 @@
 from src.services.openai_.gpt.gpt import GPT, GPTChat, GPTRetrieval
-from src.database.config import UserDataConfig
 from src.database.irs import irs
 import json
 
 
 class Chat:
-    def __init__(self, user=UserDataConfig.DefaultUser) -> None:
+    def __init__(self, user) -> None:
         self.gpt: GPTChat = GPTChat(user=user)
         self.gptRetrieval: GPTRetrieval = GPTRetrieval()
         self.history = []
