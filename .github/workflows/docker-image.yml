@@ -48,22 +48,3 @@ jobs:
             "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}"
             "CRYPTOGRAPHY_KEY=${{ secrets.CRYPTOGRAPHY_KEY }}"
             "MASTER_KEY=${{ secrets.MASTER_KEY }}"
-
-  deploy:
-    needs: build-and-push
-    name: Deploy to VPS
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy to dev
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PASSWORD }}
-          script: |
-            cd ${{ env.VPS_WORKING_DIR }}
-            ls -la
-            echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-            docker compose -f docker-compose-dev.yml pull
-            docker compose -f docker-compose-dev.yml up -d --force-recreate
