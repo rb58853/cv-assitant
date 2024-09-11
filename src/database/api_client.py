@@ -1,53 +1,37 @@
-import os
-import json
+from database.api.api import (
+    load_data,
+    save_data,
+    register,
+    get_key,
+    get_repo,
+    get_token,
+)
 
 
-def open_json(path):
-    try:
-        with open(path, "r") as file:
-            return json.loads(file.read())
-    except FileNotFoundError:
-        raise Exception("File not found.")
+def get_user_data(user):
+    return load_data(user)
 
 
-data_path = os.path.join(os.getcwd(), "data")
+def set_user_data(user, data):
+    return save_data(user, data)
 
 
-def get_user_data(user, data="info"):
-    for folder in os.listdir(data_path):
-        folder_path = os.path.join(data_path, folder)
-        if folder == user:
-            for file in os.listdir(folder_path):
-                path = os.path.join(folder_path, file)
-                if not os.path.isdir(path) and file == f"{data}.json":
-                    return open_json(path)
-
-    raise Exception("User not found.")
+def register_user(user, repo, token):
+    user_key = register(user=user, repo=repo, token=token)
+    return user_key
 
 
-class LocalData:
-    def get_info(user):
-        return get_user_data(user, "info")
-
-    def get_projects(user):
-        return get_user_data(user, "projects")
-
-    def get_full_projects():
-        pass
-
-    def get_full_info():
-        return open_json(os.path.join(data_path, "info.json"))
+def get_user_key(user):
+    return get_key(user)
 
 
-class Requests:
-    def get_info(user):
-        pass
+def get_user_repo(user):
+    return get_repo(user)
 
-    def get_projects(user):
-        pass
 
-    def get_full_projects(user):
-        pass
+def get_user_key(user):
+    return get_key(user)
 
-    def get_full_info(user):
-        pass
+
+def get_user_token(user):
+    return get_token(user)

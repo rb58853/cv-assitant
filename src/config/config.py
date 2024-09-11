@@ -17,17 +17,26 @@ class ConfigGPT:
 
     OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
-    PROJECTS_KEYS = ["id", "title", "keywords", "skills", "languages"]
 
-    STRONG_FIELDS = [
-        "name",
-        "bachelor",
-        "university",
-        "study_fields",
-        "languajes",
-        "Knowledge",
-        "programming_languajes",
-        "skills",
-        "about",
-        "interests",
+class RetrievalConfig:
+    # Campos usados para filtrar proyectos por la query. Estos campos se matchean con NLP para usar los campos reales de los proyectos
+    PROJECTS_KEYS = ["id", "title", "keywords", "skills", "programing_languages"]
+
+
+class GenerationConfig:
+    # Campos obligatorios para la generacion de proyectos o trabajos
+    work_fields = ["title", "keywords", "skills"]
+
+
+class ConfigServer:
+    MASTER_KEY = os.environ.get("MASTER_KEY")
+
+    PREX_NON_SECURE_PATHS = [
+        "/api/v1/health",
+        # "/docs",
+        # "/openapi.json",
+    ]
+
+    PREX_MASTER_SECURE_PATHS = [
+        "/api/v1/data/users/register/",
     ]

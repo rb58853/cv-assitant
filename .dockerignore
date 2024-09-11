@@ -1,0 +1,8 @@
+#exclude data while build container
+database/data/
+
+#exclude tests
+tests/
+
+#exclude developed files
+current_develop_time_test.py
