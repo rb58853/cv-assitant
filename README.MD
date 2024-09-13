@@ -19,5 +19,5 @@ The main objective of this project is to develop an advanced virtual assistant t
 ## OpenSource Code
 
 ## Local Run
-    uvicorn server:app --host 0.0.0.0 --port 8000 --ws-ping-interval 0 --ws-ping-timeout 180`
+    uvicorn server:app --host 0.0.0.0 --port 8000 --ws-ping-interval 0 --ws-ping-timeout 180` 
 
