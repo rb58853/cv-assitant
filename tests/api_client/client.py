@@ -11,9 +11,10 @@ class APIClient:
         http_url: str = "http://127.0.0.1:8000/api/v1",
         ws_url="ws://127.0.0.1:8000/api/v1",
         port: str = "8000",
+        vps=None,
     ) -> None:
-        self.http_url = f"{http_url}"
-        self.ws_url = f"{ws_url}"
+        self.http_url = f"{http_url}" if not vps else f"http://{vps}:8000/api/v1"
+        self.ws_url = f"{ws_url}" if not vps else f"ws://{vps}:8000/api/v1"
         self.port = port
 
     def load_data(self, username, user_key):
@@ -76,7 +77,9 @@ class APIClient:
 
     async def websocket_chat(self, user, api_key):
         uri = f"{self.ws_url}/open_chat/{user}"
-        async with websockets.connect(uri, extra_headers={"API-KEY": api_key}) as websocket:
+        async with websockets.connect(
+            uri, extra_headers={"API-KEY": api_key}
+        ) as websocket:
             try:
                 response = await websocket.recv()
                 print(f"status: {response}")
@@ -86,7 +89,9 @@ class APIClient:
                         await websocket.send(query)
                         # print(f"> {query}")
 
-                        response = await asyncio.wait_for(websocket.recv(), timeout=10000)
+                        response = await asyncio.wait_for(
+                            websocket.recv(), timeout=10000
+                        )
                         try:
                             response = json.loads(response)
                             print(f"< {response['response']}")
@@ -97,4 +102,4 @@ class APIClient:
                         print(e)
                         break
             except:
-                pass                
+                pass

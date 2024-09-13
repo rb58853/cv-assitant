@@ -1,6 +1,6 @@
 from api_client.client import APIClient
 from utils.utils import clear_console
-from env import GITHUB_USER, USER_KEY
+from env import GITHUB_USER, USER_KEY, USER_KEY_VPS
 import asyncio
 
 
@@ -12,4 +12,4 @@ def chating(user=GITHUB_USER, api_key=USER_KEY):
     return asyncio.run(client.websocket_chat(user=user, api_key=api_key))
 
 
-chating()
+chating(api_key=USER_KEY_VPS)

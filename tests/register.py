@@ -1,8 +1,8 @@
 from api_client.client import APIClient
-from env import GITHUB_USER, GITHUB_REPO, GITHUB_KEY, MASTER_KEY
+from env import GITHUB_USER, GITHUB_REPO, GITHUB_KEY, MASTER_KEY, VPS_HOST
+import os
 
-
-client = APIClient()
+client = APIClient(vps= VPS_HOST)
 
 
 def register(
